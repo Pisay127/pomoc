@@ -1,0 +1,143 @@
+#content-layer {
+    background:
+        linear-gradient(45deg, rgba(30, 87, 153, 0.85) 3%, rgba(45, 173, 124, 0.85) 72%),
+        url("../img/pisay.jpg") no-repeat;
+    background-size: cover;
+
+    min-height: 100%;
+    overflow: hidden;
+}
+
+#content-layer #title-block {
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#content-layer #title-block #title-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    padding: 5%;
+}
+
+#content-layer #title-block #title-content h1 {
+    font-family: "Bebas Neue Bold", Helvetica Neue, sans-serif;
+    font-size: 12em;
+    margin: 0;
+}
+
+#content-layer #title-block #title-content h2 {
+    font-family: "Source Sans Pro Extra Light", Helvetica Neue, sans-serif;
+    font-size: 2em;
+    font-weight: 400;
+    margin: 0;
+}
+
+#content-layer #login-block {
+    transform: skewX(-20deg);
+        -webkit-transform: skewX(-20deg);
+        -moz-transform: skewX(-20deg);
+    overflow: hidden;
+
+    position: relative;
+}
+
+#content-layer #login-block::before {
+    content: "";
+    background:
+            linear-gradient(30deg, rgba(0, 60, 94, 0.85) 60%, rgba(0, 164, 145, 0.85) 3%),
+            url("../img/bg-front.jpg") no-repeat;
+
+    position: absolute;
+    width: 1000%;
+    height: 1000%;
+    transform: skewX(20deg);
+        -webkit-transform: skewX(20deg);
+        -moz-transform: skewX(20deg);
+}
+
+#content-layer #login-block #login-block-content {
+    display: -moz-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    transform: skewX(20deg);
+        -webkit-transform: skewX(20deg);
+        -moz-transform: skewX(20deg);
+    padding: 5%;
+}
+
+#content-layer #login-block #login-block-content img#logo {
+    border-radius: 100%;
+}
+
+#content-layer #login-block #login-block-content h1 {
+    font-family: "Source Sans Pro Extra Light", Helvetica Neue, sans-serif;
+    font-weight: 400;
+
+    color: white;
+}
+
+#content-layer #login-block #login-block-content form {
+    font-family: "Source Sans Pro Extra Light", Helvetica Neue, sans-serif;
+    font-weight: 400;
+
+    display: -moz-box;
+    display: flex;
+    align-items: center;
+    max-width: 50%;
+}
+
+#content-layer #login-block #login-block-content form fieldset label {
+    font-size: 6em;
+    margin-bottom: 0;
+}
+
+#content-layer #login-block #login-block-content form fieldset label#description {
+    font-size: 72px;
+    font-weight: 500;
+    color: #CACACA;
+}
+
+#content-layer #login-block #login-block-content form fieldset input {
+    font-size: 1.25em;
+}
+
+#content-layer #login-block #login-block-content form fieldset input#username {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-top: 1px solid #9c9c9c;
+    border-left: 1px solid #9c9c9c;
+    border-right: 1px solid #9c9c9c;
+}
+
+#content-layer #login-block #login-block-content form fieldset input#password {
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px solid #9c9c9c;
+    border-right: 1px solid #9c9c9c;
+}
+
+#content-layer #login-block #login-block-content form fieldset input#submit {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid #007EAE;
+    background-color: #007EAE;
+    color: white;
+
+    transition: background-color 0.25s ease-out;
+}
+
+#content-layer #login-block #login-block-content form fieldset input#submit:hover {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid #00a3e1;
+    background-color: #00a3e1;
+    color: white;
+}
