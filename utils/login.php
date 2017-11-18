@@ -1,11 +1,7 @@
 <?php
+    require_once("../lib/guzzle/autoloader.php");
     require_once("../settings.php");
 
-    echo($_POST["username"]);
-
-    /**
-    // Accept form information.
-    // Send data to API.
     $url = $server_url."/oauth";
     $data = array(
         'grant_type'    => "password",
@@ -15,17 +11,15 @@
         'password'      => urlencode($_POST["password"])
     );
 
-    $options = array(
-        'http' => array(
-            'header'  => "Content-Type: application/json\r\n".
-                         "Accept: application/json\r\n",
-            'method'  => "POST",
-            'content' => json_encode($data)
-        )
+    $client = new GuzzleHttp\Client();
+    $response = $client->request("POST", $url, ['json' => $data]);
+    $json = json_decode($response->getBody());
+
+    $cookie_data = array(
+        'refresh_token' => $json->refresh_token,
+        'access_token'  => $json->access_token
     );
 
-    $context = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
-    $response = json_decode($result);
-    error_log($response);
-    **/
+    setcookie("pomoc_user", json_encode($cookie_data), time() + 259200, "/");
+
+    // Add checks for errors.

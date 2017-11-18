@@ -4,7 +4,7 @@ $(document).ready(function(){
 
        var form_data = $('form#login-form').serialize();
        $.post('utils/login.php', form_data, function(response) {
-           alert(response);
+           window.location.reload(true);
        });
    });
 });
