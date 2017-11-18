@@ -18,7 +18,7 @@
         if (!$user_logged_in) {
             echo '
             <link rel="stylesheet" type="text/css" href="assets/css/fonts.css">
-            <link rel="stylesheet" type="text/css" href="assets/css/index.css">
+            <link rel="stylesheet" type="text/css" href="assets/css/anon_index.css">
             ';
         }
     ?>
@@ -47,6 +47,8 @@
                                 <input id="username" name="username" type="text" class="pure-input-1" placeholder="Username" required>
                                 <input id="password" name="password" type="password" class="pure-input-1" placeholder="Password" required>
                                 <input id="submit" type="submit" class="pure-input-1" value="Log in">
+                                
+                                <div id="login-message"></div>
                             </fieldset>
                         </form>
                     </div>
