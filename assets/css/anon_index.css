@@ -141,3 +141,16 @@
     background-color: #00a3e1;
     color: white;
 }
+
+#content-layer #login-block #login-block-content div#login-message {
+    background-color: #d92321;
+    color: white;
+
+    font-size: 1.25em;
+    text-align: center;
+
+    display: none;
+    border-radius: 10px;
+    margin-top: 5%;
+    padding: 3%;
+}

@@ -2,6 +2,8 @@
     require_once("../lib/guzzle/autoloader.php");
     require_once("../settings.php");
 
+    use GuzzleHttp\Exception\ClientException;
+
     $url = $server_url."/oauth";
     $data = array(
         'grant_type'    => "password",
@@ -12,14 +14,25 @@
     );
 
     $client = new GuzzleHttp\Client();
-    $response = $client->request("POST", $url, ['json' => $data]);
-    $json = json_decode($response->getBody());
+    try {
+        $response = $client->request("POST", $url, ['json' => $data]);
 
-    $cookie_data = array(
-        'refresh_token' => $json->refresh_token,
-        'access_token'  => $json->access_token
-    );
+        $json = json_decode($response->getBody());
+        $cookie_data = array(
+            'refresh_token' => $json->refresh_token,
+            'access_token'  => $json->access_token
+        );
 
-    setcookie("pomoc_user", json_encode($cookie_data), time() + 259200, "/");
-
-    // Add checks for errors.
+        setcookie("pomoc_user", json_encode($cookie_data), time() + 259200, "/");
+        $login_response = array(
+            'error'   => false,
+            'message' => "User successfully logged in."
+        );
+        echo json_encode($login_response);
+    } catch (ClientException $client_exp) {
+        $login_response = array(
+            'error'   => true,
+            'message' => "Incorrect username or password."
+        );
+        echo json_encode($login_response);
+    }
