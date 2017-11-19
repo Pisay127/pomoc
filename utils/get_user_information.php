@@ -20,7 +20,7 @@
         // Implement try-catch error handling Runtime Exception that occurs here when the server can't be
         // reached or whatevs. Lols. Blame Ignacio on this "feature".
         $response = $client->request("GET", $url, ['json' => $data]);
-        $json = json_encode(json_decode($response->getBody()));
+        $json = json_decode($response->getBody(), true)["data"]["user"];
 
         return $json;
     }

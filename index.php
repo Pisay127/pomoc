@@ -64,7 +64,18 @@
                         <h1>Profile</h1>
             ';
                         require_once("utils/get_user_information.php");
-                        echo get_user_info();
+                        $user_info = get_user_info();
+                        echo '
+                            <p>
+                            Username: '.$user_info["username"].'<br>
+                            ID: '.$user_info["user_id"].'<br>
+                            First Name: '.$user_info["first_name"].'<br>
+                            Middle Name: '.$user_info["middle_name"].'<br>
+                            Last Name: '.$user_info["last_name"].'<br>
+                            Age: '.$user_info["age"].'<br>
+                            Birth Date: '.$user_info["birth_date"].'
+                            </p>
+                        ';
             echo '
                     </div>
                 </div>
