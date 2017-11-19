@@ -15,7 +15,12 @@
 
 @font-face {
     font-family: "Bebas Neue Thin";
-    src: url("../fonts/bebas-neue/Thin.ttf");
+    src: url("../fonts/bebas-neue/thin.ttf");
+}
+
+@font-face {
+    font-family: "Source Sans Pro Regular";
+    src: url("../fonts/source-sans-pro/regular.otf");
 }
 
 @font-face {
@@ -26,4 +31,9 @@
 @font-face {
     font-family: "Source Sans Pro Extra Light";
     src: url("../fonts/source-sans-pro/extra-light.otf");
+}
+
+@font-face {
+    font-family: "Droid Serif Regular";
+    src: url("../fonts/droid-serif/regular.ttf");
 }
