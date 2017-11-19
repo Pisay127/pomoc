@@ -59,7 +59,15 @@
                         </footer>
                     </div>
                 </div>
-                <div id="main-dashboard" class="pure-u-17-24"></div>
+                <div id="main-dashboard" class="pure-u-17-24">
+                    <div id="profile">
+                        <h1>Profile</h1>
+            ';
+                        require_once("utils/get_user_information.php");
+                        echo get_user_info();
+            echo '
+                    </div>
+                </div>
             </div>
             ';
         } else {

@@ -83,3 +83,14 @@
 #content-layer #sidebar #information footer a:active {
     color: #4451ff;
 }
+
+#content-layer #main-dashboard h1 {
+    font-family: "Bebas Neue Bold", Helvetica Neue, sans-serif;
+    font-size: 6em;
+    color: #2b2b2b;
+    margin: 0;
+}
+
+#content-layer #main-dashboard #profile {
+    padding: 3%;
+}
