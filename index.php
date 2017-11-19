@@ -14,10 +14,14 @@
     <link rel="stylesheet" type="text/css" href="assets/css/pure-css/pure-min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/pure-css/forms-min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/global.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/fonts.css">
     <?php
-        if (!$user_logged_in) {
+        if ($user_logged_in) {
             echo '
-            <link rel="stylesheet" type="text/css" href="assets/css/fonts.css">
+            <link rel="stylesheet" type="text/css" href="assets/css/logged_index.css">
+            ';
+        } else {
+            echo '
             <link rel="stylesheet" type="text/css" href="assets/css/anon_index.css">
             ';
         }
@@ -28,7 +32,36 @@
 <body>
     <?php
         if ($user_logged_in) {
-            echo "Logged in!";
+            echo '
+            <div id="content-layer" class="pure-g">
+                <div id="sidebar" class="pure-u-7-24">
+                    <div id="title">
+                        <h1>Pomoc</h1>
+                        <h2>The PSHS-EVC Grading and Attendance System</h2>
+                    </div>
+                    <div id="quote">
+                        ~o~
+                        <blockquote>
+                            You know, rewarding us with $omething wouldn\'t hurt.
+                            <br><br>-Shawarma Team
+                        </blockquote>
+                        ~o~
+                    </div>
+                    <div id="navigation">
+                        <ul>
+                            <li>Dashboard</li>
+                            <li>Profile</li>
+                        </ul>
+                    </div>
+                    <div id="information">
+                        <footer>
+                        Copyright &copy; Philippine Science High School - Eastern Visayas Campus.<br><br>Developed by Shawarma Team. You may contact us through <a href="https://twitter.com/seanballais" target="_blank">@seanballais</a>, <a href="https://twitter.com/dejesus_610" target="_blank">@dejesus_610</a>, <a href="https://twitter.com/pulmaats" target="_blank">@pulmaats</a>.
+                        </footer>
+                    </div>
+                </div>
+                <div id="main-dashboard" class="pure-u-17-24"></div>
+            </div>
+            ';
         } else {
             echo '
             <div id="content-layer" class="pure-g">
