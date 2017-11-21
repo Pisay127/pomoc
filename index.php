@@ -64,21 +64,17 @@
             ';
                         require_once("utils/get_user_information.php");
                         $user_info = get_user_info();
-                        echo '
-                            <p>
-                            Username: '.$user_info["username"].'<br>
-                            ID: '.$user_info["user_id"].'<br>
-                            First Name: '.$user_info["first_name"].'<br>
-                            Middle Name: '.$user_info["middle_name"].'<br>
-                            Last Name: '.$user_info["last_name"].'<br>
-                            Age: '.$user_info["age"].'<br>
-                            Birth Date: '.$user_info["birth_date"].'
-                            </p>
-                        ';
+                        $name = $user_info["first_name"]." ".$user_info["middle_name"]." ".$user_info["last_name"];
+                        $birth_date = strftime("%B %d, %Y", strtotime($user_info["birth_date"]));
                         echo '
                             <div id="header">
                                 <img id="profile-pic" class="pure-img" src="assets/img/icons/logo.jpg" width="175px" height="175px">
-                                <h3>@'.$user_info["username"].'</h3>
+                                <h3>'.$name.'</h3>
+                                <h2>@'.$user_info["username"].'</h2>
+                                <p><span id="age-span"><b>Age</b> '.$user_info["age"].'</span><span><b>Birthday</b> '.$birth_date.'</span></p>
+                            </div>
+                            <div id="information">
+                                
                             </div>
                         ';
             echo '
