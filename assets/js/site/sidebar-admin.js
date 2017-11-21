@@ -11,5 +11,11 @@ $(document).ready(function() {
             $('li#users-dropdownabble span').text('▼');
             is_manage_users_dropped = false;
         }
-    })
+    });
+
+    $('li#logout-button').click(function() {
+        $.post('utils/logout.php', function() {
+            window.location.reload(true);
+        });
+    });
 });

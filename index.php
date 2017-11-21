@@ -53,6 +53,7 @@
                                 <li>Manage Students</li>
                                 <li>Manage Teachers</li>
                             </div>
+                            <li id="logout-button">Logout</li>
                         </ul>
                     </div>
                     <div id="quote">
