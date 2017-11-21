@@ -28,6 +28,7 @@
     ?>
     <script type="text/javascript" src="assets/js/lib/jquery.js"></script>
     <script type="text/javascript" src="assets/js/site/login.js"></script>
+    <script type="text/javascript" src="assets/js/site/sidebar-admin.js"></script>
 </head>
 <body>
     <?php
@@ -41,8 +42,17 @@
                     </div>
                     <div id="navigation">
                         <ul>
-                            <li>Dashboard</li>
                             <li>Profile</li>
+                            <li>Manage Subjects</li>
+                            <li>Manage Classes</li>
+                            <li>Manage Batches</li>
+                            <li>Manage Sections</li>
+                            <li id="users-dropdownabble">Manage Users<span class="push-rightmost">▼</span></li>
+                            <div id="users-dropdown">
+                                <li>Manage Admins</li>
+                                <li>Manage Students</li>
+                                <li>Manage Teachers</li>
+                            </div>
                         </ul>
                     </div>
                     <div id="quote">
@@ -60,7 +70,7 @@
                     </div>
                 </div>
                 <div id="main-dashboard" class="pure-u-17-24">
-                    <div id="profile">
+                    <div id="profile" class="views">
             ';
                         require_once("utils/get_user_information.php");
                         $user_info = get_user_info();
@@ -71,7 +81,7 @@
                                 <img id="profile-pic" class="pure-img" src="assets/img/icons/logo.jpg" width="175px" height="175px">
                                 <h3>'.$name.'</h3>
                                 <h2>@'.$user_info["username"].'</h2>
-                                <p><span id="age-span"><b>Age</b> '.$user_info["age"].'</span><span><b>Birthday</b> '.$birth_date.'</span></p>
+                                <p class="pure-u"><span id="age-span"><b>Age</b> '.$user_info["age"].'</span><span><b>Birthday</b> '.$birth_date.'</span></p>
                             </div>
                             <div id="information">
                                 

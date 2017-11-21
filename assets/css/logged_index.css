@@ -1,3 +1,7 @@
+.push-rightmost {
+    float: right;
+}
+
 #content-layer {
     min-height: 100%;
 }
@@ -49,6 +53,24 @@
 
     transition: all 0.2s ease-out;
     padding: 5%;
+}
+
+#content-layer #sidebar #navigation ul div#users-dropdown {
+    display: none;
+}
+
+#content-layer #sidebar #navigation ul div#users-dropdown li {
+    background-color: #102a3a;
+
+    padding-left: 10%;
+}
+
+#content-layer #sidebar #navigation ul div#users-dropdown li:hover {
+    background-color: #122134;
+}
+
+#content-layer #sidebar #navigation ul div#users-dropdown li:active {
+    background-color: #15253a;
 }
 
 #content-layer #sidebar #navigation ul li:hover {
