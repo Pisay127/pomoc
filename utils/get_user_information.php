@@ -12,7 +12,7 @@
         $decoded_token = \Pomoc\Utils\Utils::decodeJWT($access_token);
         $decoded_payload = json_decode($decoded_token["payload"]);
         $data = array(
-            'username' => $decoded_payload->sub  // We just grabbed the username. "sub" == username
+            'user_id' => $decoded_payload->sub  // We just grabbed the username. "sub" == username
         );
 
         $client = new GuzzleHttp\Client();

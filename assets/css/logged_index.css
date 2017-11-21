@@ -91,6 +91,20 @@
     margin: 0;
 }
 
-#content-layer #main-dashboard #profile {
-    padding: 3%;
+#content-layer #main-dashboard #profile #header {
+    background:
+            linear-gradient(45deg, rgba(30, 87, 153, 0.85) 3%, rgba(45, 173, 124, 0.85) 72%),
+            url("../img/pisay.jpg") no-repeat;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5%;
+}
+
+#content-layer #main-dashboard #profile #header img#profile-pic {
+    border-radius: 100%;
 }

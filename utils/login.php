@@ -23,8 +23,7 @@
             'access_token'  => $json->access_token
         );
 
-        header("Location: ../index.php");
-        setcookie("pomoc_user", json_encode($cookie_data), time() + 259200, "/");
+        setcookie("pomoc_user", json_encode($cookie_data), 0, "/");
         $login_response = array(
             'error'   => false,
             'message' => "User successfully logged in."

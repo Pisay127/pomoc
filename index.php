@@ -39,6 +39,12 @@
                         <h1>Pomoc</h1>
                         <h2>The PSHS-EVC Grading and Attendance System</h2>
                     </div>
+                    <div id="navigation">
+                        <ul>
+                            <li>Dashboard</li>
+                            <li>Profile</li>
+                        </ul>
+                    </div>
                     <div id="quote">
                         ~o~
                         <blockquote>
@@ -46,12 +52,6 @@
                             <br><br>-Shawarma Team
                         </blockquote>
                         ~o~
-                    </div>
-                    <div id="navigation">
-                        <ul>
-                            <li>Dashboard</li>
-                            <li>Profile</li>
-                        </ul>
                     </div>
                     <div id="information">
                         <footer>
@@ -61,7 +61,6 @@
                 </div>
                 <div id="main-dashboard" class="pure-u-17-24">
                     <div id="profile">
-                        <h1>Profile</h1>
             ';
                         require_once("utils/get_user_information.php");
                         $user_info = get_user_info();
@@ -75,6 +74,12 @@
                             Age: '.$user_info["age"].'<br>
                             Birth Date: '.$user_info["birth_date"].'
                             </p>
+                        ';
+                        echo '
+                            <div id="header">
+                                <img id="profile-pic" class="pure-img" src="assets/img/icons/logo.jpg" width="175px" height="175px">
+                                <h3>@'.$user_info["username"].'</h3>
+                            </div>
                         ';
             echo '
                     </div>
