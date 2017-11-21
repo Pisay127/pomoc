@@ -81,7 +81,7 @@
                                 <img id="profile-pic" class="pure-img" src="assets/img/icons/logo.jpg" width="175px" height="175px">
                                 <h3>'.$name.'</h3>
                                 <h2>@'.$user_info["username"].'</h2>
-                                <p class="pure-u"><span id="age-span"><b>Age</b> '.$user_info["age"].'</span><span><b>Birthday</b> '.$birth_date.'</span></p>
+                                <p class="pure-u-1"><span id="age-span"><b>Age</b> '.$user_info["age"].'</span><span><b>Birthday</b> '.$birth_date.'</span></p>
                             </div>
                             <div id="information">
                                 

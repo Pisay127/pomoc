@@ -152,9 +152,8 @@
     font-family: "Source Sans Pro Extra Light", Helvetica Neue, sans-serif;
     font-size: 1.2em;
     font-weight: 400;
+    text-align: center;
     color: white;
-
-    float: left;
 }
 
 #content-layer #main-dashboard #profile #header p span {
