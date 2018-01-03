@@ -13,6 +13,9 @@
     <link rel="stylesheet" type="text/css" href="assets/css/pure-css/base-min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/pure-css/pure-min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/pure-css/forms-min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery/jquery-ui.theme.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery/jquery-ui.structure.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/global.css">
     <link rel="stylesheet" type="text/css" href="assets/css/fonts.css">
     <?php
@@ -27,8 +30,10 @@
         }
     ?>
     <script type="text/javascript" src="assets/js/lib/jquery.js"></script>
+    <script type="text/javascript" src="assets/js/lib/jquery-ui.min.js"></script>
     <script type="text/javascript" src="assets/js/site/login.js"></script>
     <script type="text/javascript" src="assets/js/site/sidebar-admin.js"></script>
+    <script type="text/javascript" src="assets/js/site/profile.js"></script>
 </head>
 <body>
     <?php
@@ -71,24 +76,51 @@
                     </div>
                 </div>
                 <div id="main-dashboard" class="pure-u-17-24">
+                    ';
+                    require_once("utils/get_user_information.php");
+                    $user_info = get_user_info();
+                    $name = $user_info["first_name"]." ".$user_info["middle_name"]." ".$user_info["last_name"];
+                    $birth_date = strftime("%B %d, %Y", strtotime($user_info["birth_date"]));
+                    echo '
                     <div id="profile" class="views">
-            ';
-                        require_once("utils/get_user_information.php");
-                        $user_info = get_user_info();
-                        $name = $user_info["first_name"]." ".$user_info["middle_name"]." ".$user_info["last_name"];
-                        $birth_date = strftime("%B %d, %Y", strtotime($user_info["birth_date"]));
-                        echo '
-                            <div id="header">
-                                <img id="profile-pic" class="pure-img" src="assets/img/icons/logo.jpg" width="175px" height="175px">
-                                <h3>'.$name.'</h3>
-                                <h2>@'.$user_info["username"].'</h2>
-                                <p class="pure-u-1"><span id="age-span"><b>Age</b> '.$user_info["age"].'</span><span><b>Birthday</b> '.$birth_date.'</span></p>
-                            </div>
-                            <div id="information">
-                                
-                            </div>
+                        <div id="header">
+                            <img id="profile-pic" class="pure-img" src="assets/img/icons/logo.jpg" width="175px" height="175px">
+                            <h3>'.$name.'<span';
+                            $span_title = "";
+                            $user_icon = "";
+                            if ($user_info["user_type"] == "admin") {
+                                $span_title = "This user is an admin.";
+                                $user_icon = "🛡";
+                            } else if ($user_info["user_type"] == "teacher") {
+                                $span_title = "This user is a teacher. May they teach the students with excellence.";
+                                $user_icon = "📖";
+                            } else if ($user_info["user_type"] == "student") {
+                                $span_title = "This user is a student. Musta grades? :) A friendly totally not threatening message from the Shawarma team.";
+                                $user_icon = "🎓";
+                            }
+
+                            echo ' title="'.$span_title.'" style="user-select: none; margin-left: 5px; margin-right: 5px;">'.$user_icon;
+
+                            echo'
+                            </span></h3>
+                            <h2>@'.$user_info["username"].'</h2>
+                            <p class="pure-u-1"><span id="age-span"><b>Age</b> '.$user_info["age"].'</span><span><b>Birthday</b> '.$birth_date.'</span></p>
+                        </div>
+                        <div id="information">
+                            <h2>Information</h2>
+                            <p>Click values to edit.</p>
+                            <div id="info-list">
+                                <p><span class="float-left">Username</span><span id="username" class="float-right data-editable">'.$user_info["username"].'</span></p>
+                                <p><span class="float-left">Password</span><span id="password" class="float-right data-editable">(secret)</span></p>
+                                <p><span class="float-left">First name</span><span id="first_name" class="float-right data-editable">'.$user_info["first_name"].'</span></p>
+                                <p><span class="float-left">Middle name</span><span id="middle_name" class="float-right data-editable">'.$user_info["middle_name"].'</span></p>
+                                <p><span class="float-left">Last name</span><span id="last_name" class="float-right data-editable">'.$user_info["last_name"].'</span></p>
+                                <p><span class="float-left">Age</span><span id="age" class="float-right">'.$user_info["age"].'</span></p>
+                                <p><span class="float-left">Birthday</span><span id="birth_date" class="float-right data-editable datepicker">'.$birth_date.'</span></p>
+                            </div>        
+                        </div>
                         ';
-            echo '
+            echo '                    
                     </div>
                 </div>
             </div>

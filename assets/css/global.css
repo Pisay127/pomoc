@@ -2,3 +2,19 @@ html, body {
     height: 100%;
     margin: 0;
 }
+
+*.left {
+    text-align: left;
+}
+
+*.right {
+    text-align: right;
+}
+
+*.float-left {
+    float: left;
+}
+
+*.float-right {
+    float: right;
+}

@@ -13,7 +13,7 @@
         $decoded_payload = json_decode($decoded_token["payload"]);
         $data = array(
             'user_id' => $decoded_payload->sub,  // We just grabbed the username. "sub" == username
-            'attributes' => "first_name, middle_name, last_name, birth_date, username, age"
+            'scope' => "first_name, middle_name, last_name, birth_date, username, age, user_type"
         );
 
         $client = new GuzzleHttp\Client();

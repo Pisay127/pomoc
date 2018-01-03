@@ -10,7 +10,8 @@
         'client_id'     => $client_id,
         'client_secret' => $client_secret,
         'username'      => urlencode($_POST["username"]),
-        'password'      => urlencode($_POST["password"])
+        'password'      => urlencode($_POST["password"]),
+        'scope'         => ''
     );
 
     $client = new GuzzleHttp\Client();
@@ -30,6 +31,7 @@
         );
         echo json_encode($login_response);
     } catch (ClientException $client_exp) {
+
         $login_response = array(
             'error'   => true,
             'message' => "Incorrect username or password."

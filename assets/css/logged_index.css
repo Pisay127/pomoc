@@ -53,6 +53,8 @@
 
     transition: all 0.2s ease-out;
     padding: 5%;
+
+    user-select: none;
 }
 
 #content-layer #sidebar #navigation ul div#users-dropdown {
@@ -63,6 +65,8 @@
     background-color: #102a3a;
 
     padding-left: 10%;
+
+    user-select: none;
 }
 
 #content-layer #sidebar #navigation ul div#users-dropdown li:hover {
@@ -162,4 +166,37 @@
 
 #content-layer #main-dashboard #profile #header p span#age-span {
     margin-right: 10%;
+}
+
+#content-layer #main-dashboard #profile #information {
+    margin: 3% 20% 3% 20%;
+    padding: 3%;
+
+    background-color: #EFEFEF;
+    border-radius: 25px;
+}
+
+#content-layer #main-dashboard #profile #information h2 {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.5em;
+
+    margin: 0;
+}
+
+#content-layer #main-dashboard #profile #information p {
+    font-family: "Source Sans Pro Extra Light", Helvetica Neue, sans-serif;
+    font-size: 1em;
+    font-weight: 400;
+
+    margin: 0;
+}
+
+#content-layer #main-dashboard #profile #information div#info-list p {
+    font-size: 1.25em;
+    margin: 0;
+    padding: 3%;
+}
+
+#content-layer #main-dashboard #profile #information div#info-list p span.float-left {
+    font-weight: bold;
 }
