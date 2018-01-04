@@ -14,4 +14,15 @@ class Utils
             'signature' => base64_decode($signature)
         );
     }
+
+    public static function getUserID()
+    {
+        $cookie = $_COOKIE["pomoc_user"];
+        $cookie_value = json_decode($cookie);
+        $access_token = $cookie_value->access_token;
+        $decoded_token = Utils::decodeJWT($access_token);
+        $decoded_payload = json_decode($decoded_token["payload"]);
+
+        return $decoded_payload->sub;
+    }
 }

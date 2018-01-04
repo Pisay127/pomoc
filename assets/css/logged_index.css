@@ -169,8 +169,8 @@
 }
 
 #content-layer #main-dashboard #profile #information {
-    margin: 3% 20% 3% 20%;
-    padding: 3%;
+    margin: 3% 20% 1% 20%;
+    padding: 1.5% 3% 3% 3%;
 
     background-color: #EFEFEF;
     border-radius: 25px;
@@ -199,4 +199,34 @@
 
 #content-layer #main-dashboard #profile #information div#info-list p span.float-left {
     font-weight: bold;
+}
+
+#content-layer #main-dashboard #profile #information-button {
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+#content-layer #main-dashboard #profile #information-button button#profile-save-button {
+    font-family: "Source Sans Pro Extra Light", Helvetica Neue, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+
+    border-radius: 5px;
+
+    float: right;
+}
+
+#content-layer #main-dashboard #profile div#profile-save-message {
+    background-color: #2F2F2F;
+    color: white;
+
+    font-size: 1em;
+    text-align: center;
+
+    display: none;
+    border-radius: 5px;
+    padding: 1.5%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 3%;
 }

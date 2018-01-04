@@ -95,7 +95,7 @@
                                 $span_title = "This user is a teacher. May they teach the students with excellence.";
                                 $user_icon = "📖";
                             } else if ($user_info["user_type"] == "student") {
-                                $span_title = "This user is a student. Musta grades? :) A friendly totally not threatening message from the Shawarma team.";
+                                $span_title = "This user is a student. Musta grades? :) A totally not threatening friendly message from the Shawarma team.";
                                 $user_icon = "🎓";
                             }
 
@@ -106,18 +106,23 @@
                             <h2>@'.$user_info["username"].'</h2>
                             <p class="pure-u-1"><span id="age-span"><b>Age</b> '.$user_info["age"].'</span><span><b>Birthday</b> '.$birth_date.'</span></p>
                         </div>
+                        <div id="profile-save-message"></div>
                         <div id="information">
                             <h2>Information</h2>
                             <p>Click values to edit.</p>
                             <div id="info-list">
-                                <p><span class="float-left">Username</span><span id="username" class="float-right data-editable">'.$user_info["username"].'</span></p>
-                                <p><span class="float-left">Password</span><span id="password" class="float-right data-editable">(secret)</span></p>
+                                <p><span class="float-left">ID Number</span><span id="id_number" class="float-right">'.$user_info["id_number"].'</span></p>
+                                <p><span class="float-left">Username</span><span id="username" class="float-right">'.$user_info["username"].'</span></p>
+                                <p><span class="float-left">Password</span><span id="password" class="float-right">(secret)</span></p>
                                 <p><span class="float-left">First name</span><span id="first_name" class="float-right data-editable">'.$user_info["first_name"].'</span></p>
                                 <p><span class="float-left">Middle name</span><span id="middle_name" class="float-right data-editable">'.$user_info["middle_name"].'</span></p>
                                 <p><span class="float-left">Last name</span><span id="last_name" class="float-right data-editable">'.$user_info["last_name"].'</span></p>
                                 <p><span class="float-left">Age</span><span id="age" class="float-right">'.$user_info["age"].'</span></p>
                                 <p><span class="float-left">Birthday</span><span id="birth_date" class="float-right data-editable datepicker">'.$birth_date.'</span></p>
                             </div>        
+                        </div>
+                        <div id="information-button">
+                            <button id="profile-save-button" class="pure-button pure-button-primary" disabled>Save changes</button>
                         </div>
                         ';
             echo '                    

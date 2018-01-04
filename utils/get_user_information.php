@@ -6,14 +6,9 @@
     function get_user_info() {
         global $server_url;
         $url = $server_url."/user";
-        $cookie = $_COOKIE["pomoc_user"];
-        $cookie_value = json_decode($cookie);
-        $access_token = $cookie_value->access_token;
-        $decoded_token = \Pomoc\Utils\Utils::decodeJWT($access_token);
-        $decoded_payload = json_decode($decoded_token["payload"]);
         $data = array(
-            'user_id' => $decoded_payload->sub,  // We just grabbed the username. "sub" == username
-            'scope' => "first_name, middle_name, last_name, birth_date, username, age, user_type"
+            'user_id' => \Pomoc\Utils\Utils::getUserID(),  // We just grabbed the username. "sub" == username
+            'scope' => "id_number, first_name, middle_name, last_name, birth_date, username, age, user_type"
         );
 
         $client = new GuzzleHttp\Client();
