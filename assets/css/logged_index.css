@@ -250,3 +250,14 @@
     margin-right: 20%;
     margin-top: 3%;
 }
+
+#content-layer #main-dashboard #manage-admins div#panel {
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel h2 {
+    font-family: "Source Sans Pro Extra Light", Helvetica Neue, sans-serif;
+    font-size: 1.5em;
+    font-weight: 400;
+}

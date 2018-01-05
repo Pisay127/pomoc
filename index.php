@@ -158,7 +158,19 @@
             echo '                    
                     </div>
                     <div id="manage-subjects" class="view">Test</div>
-                    <div id="manage-admins" class="view">admin</div>
+                    <div id="manage-admins" class="view">
+                        <div id="panel">
+                            <h2>Manage Admins</h2>
+                            <div id="search">
+                                Text box here and view all thingy mabop
+                            </div>
+                            <div id="actions">
+                                <button class="pure-button pure-button-primary">➕ Add new admin</button>
+                                <button class="pure-button pure-button-default">View all</button>
+                            </div>
+                            <div id="results"></div>
+                        </div>
+                    </div>
                     <div id="manage-students" class="view">student</div>
                     <div id="manage-teachers" class="view">teacher</div>
                 </div>
