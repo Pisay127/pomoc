@@ -32,9 +32,9 @@
     <script type="text/javascript" src="assets/js/lib/jquery.js"></script>
     <script type="text/javascript" src="assets/js/lib/jquery-ui.min.js"></script>
     <script type="text/javascript" src="assets/js/site/login.js"></script>
+    <script type="text/javascript" src="assets/js/site/view_handler.js"></script>
     <script type="text/javascript" src="assets/js/site/sidebar.js"></script>
     <script type="text/javascript" src="assets/js/site/profile.js"></script>
-    <script type="text/javascript" src="assets/js/site/view_handler.js"></script>
 </head>
 <body>
     <?php
@@ -55,9 +55,9 @@
                             <li id="manage-sections">Manage Sections</li>
                             <li id="users-dropdownabble">Manage Users<span class="push-rightmost">▼</span></li>
                             <div id="users-dropdown">
-                                <li>Manage Admins</li>
-                                <li>Manage Students</li>
-                                <li>Manage Teachers</li>
+                                <li id="manage-admins">Manage Admins</li>
+                                <li id="manage-teachers">Manage Teachers</li>
+                                <li id="manage-students">Manage Students</li>
                             </div>
                             <li id="logout-button">Logout</li>
                         </ul>
@@ -105,7 +105,7 @@
                             "\"Geeets?\"",
                             "\"Iha, mabigat na ba yan?\"",
                             "\"Errrrrrrr\"",
-                            "\"Go to the board and multiple.\"",
+                            "\"Go to the board and multiply.\"",
                             "\"To dream the impossible dreeaaaaammm...\"",
                             "\"To fight the unbeatable fooooeeee\""
                         );
@@ -158,6 +158,9 @@
             echo '                    
                     </div>
                     <div id="manage-subjects" class="view">Test</div>
+                    <div id="manage-admins" class="view">admin</div>
+                    <div id="manage-students" class="view">student</div>
+                    <div id="manage-teachers" class="view">teacher</div>
                 </div>
             </div>
             ';

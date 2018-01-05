@@ -1,32 +1,27 @@
 $(document).ready(function() {
-    var is_manage_users_dropped = false;
-
     $('div#navigation ul li#users-dropdownabble').click(function() {
-        if (!is_manage_users_dropped) {
+        if (sessionStorage.getItem('manage_users_down') === 'false'
+            || sessionStorage.getItem('manage_users_down') === null) {
+            console.log("going down");
             $("div#users-dropdown").slideDown(400);
             $('li#users-dropdownabble span').text('▲');
-            is_manage_users_dropped = true;
+            sessionStorage.setItem('manage_users_down', true);
         } else {
             $("div#users-dropdown").slideUp(400);
             $('li#users-dropdownabble span').text('▼');
-            is_manage_users_dropped = false;
+            sessionStorage.setItem('manage_users_down', false);
         }
     });
 
-    $('div#navigation ul li#profile').click(function() {
-        if (localStorage.getItem('current_view') !== 'profile') {
+    $('div#navigation ul li').click(function() {
+        var menu_id = $(this).attr('id');
+        if (localStorage.getItem('current_view') !== menu_id
+            && (menu_id !== 'users-dropdownabble'
+                && menu_id !== 'logout-button')
+        ) {
             $('div#' + localStorage.getItem('current_view')).fadeOut(500);
             $('div#loading-page').fadeIn(500);
-            localStorage.setItem('current_view', 'profile');
-            window.location.reload(true);
-        }
-    });
-
-    $('div#navigation ul li#manage-subjects').click(function() {
-        if (localStorage.getItem('current_view') !== 'manage-subjects') {
-            $('div#' + localStorage.getItem('current_view')).fadeOut(500);
-            $('div#loading-page').fadeIn(500);
-            localStorage.setItem('current_view', 'manage-subjects');
+            localStorage.setItem('current_view', menu_id);
             window.location.reload(true);
         }
     });
@@ -34,6 +29,7 @@ $(document).ready(function() {
     $('div#navigation ul li#logout-button').click(function() {
         $.post('utils/logout.php', function() {
             localStorage.clear();
+            sessionStorage.clear();
             window.location.reload(true);
         });
     });

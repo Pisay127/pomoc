@@ -1,11 +1,4 @@
 $(document).ready(function() {
-    if (sessionStorage.getItem('display_profile_save') !== null) {
-        var message_block = $('div#profile-save-message');
-        message_block.text(sessionStorage.getItem('profile_save_message'));
-        message_block.slideDown(450);
-        sessionStorage.clear();
-    }
-
     $(document).on('click', 'span.data-editable', function() {
         var $el = $(this);
         var el_id = $el.attr('id');
@@ -95,6 +88,7 @@ $(document).ready(function() {
             sessionStorage.clear();
             sessionStorage.setItem('display_profile_save', 'true');
             sessionStorage.setItem('profile_save_message', message_text);
+            sessionStorage.setItem('no_loading', 'true');
             window.location.reload(true);
         });
     });
