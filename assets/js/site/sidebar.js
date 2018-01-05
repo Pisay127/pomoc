@@ -19,8 +19,9 @@ $(document).ready(function() {
             && (menu_id !== 'users-dropdownabble'
                 && menu_id !== 'logout-button')
         ) {
-            $('div#' + localStorage.getItem('current_view')).fadeOut(500);
-            $('div#loading-page').fadeIn(500);
+            $('div#' + localStorage.getItem('current_view')).fadeOut(500, function() {
+                $('div#loading-page').fadeIn(500);
+            });
             localStorage.setItem('current_view', menu_id);
             window.location.reload(true);
         }

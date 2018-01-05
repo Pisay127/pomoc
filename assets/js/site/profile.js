@@ -84,11 +84,13 @@ $(document).ready(function() {
         $.post('utils/profile-save.php', {'modified_data': JSON.stringify(modified_data)}, function(response) {
             var resp_json = JSON.parse(response);
             var message_text = resp_json.message;
+            var manage_users_down_val = sessionStorage.getItem('manage_users_down');
 
             sessionStorage.clear();
             sessionStorage.setItem('display_profile_save', 'true');
             sessionStorage.setItem('profile_save_message', message_text);
             sessionStorage.setItem('no_loading', 'true');
+            sessionStorage.setItem('manage_users_down', manage_users_down_val);
             window.location.reload(true);
         });
     });
