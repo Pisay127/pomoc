@@ -23,6 +23,7 @@ $(document).ready(function(){
 
                $("input#submit").val('Login').removeAttr("disabled");
            } else {
+               localStorage.setItem('current_view', 'profile');
                window.location.reload(true);
            }
        });

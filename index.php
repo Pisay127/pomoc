@@ -32,8 +32,9 @@
     <script type="text/javascript" src="assets/js/lib/jquery.js"></script>
     <script type="text/javascript" src="assets/js/lib/jquery-ui.min.js"></script>
     <script type="text/javascript" src="assets/js/site/login.js"></script>
-    <script type="text/javascript" src="assets/js/site/sidebar-admin.js"></script>
+    <script type="text/javascript" src="assets/js/site/sidebar.js"></script>
     <script type="text/javascript" src="assets/js/site/profile.js"></script>
+    <script type="text/javascript" src="assets/js/site/view_handler.js"></script>
 </head>
 <body>
     <?php
@@ -47,11 +48,11 @@
                     </div>
                     <div id="navigation">
                         <ul>
-                            <li>Profile</li>
-                            <li>Manage Subjects</li>
-                            <li>Manage Classes</li>
-                            <li>Manage Batches</li>
-                            <li>Manage Sections</li>
+                            <li id="profile">Profile</li>
+                            <li id="manage-subjects">Manage Subjects</li>
+                            <li id="manage-classes">Manage Classes</li>
+                            <li id="manage-batches">Manage Batches</li>
+                            <li id="manage-sections">Manage Sections</li>
                             <li id="users-dropdownabble">Manage Users<span class="push-rightmost">▼</span></li>
                             <div id="users-dropdown">
                                 <li>Manage Admins</li>
@@ -82,7 +83,36 @@
                     $name = $user_info["first_name"]." ".$user_info["middle_name"]." ".$user_info["last_name"];
                     $birth_date = strftime("%B %d, %Y", strtotime($user_info["birth_date"]));
                     echo '
-                    <div id="profile" class="views">
+                    <div id="loading-page">
+                        <!-- To be invoked only when switching views. -->
+                        <img src="assets/img/icons/loading.svg">
+                        <p>';
+                        $loading_quotes = array(
+                            "Musta grades?",
+                            "Can't touch this.",
+                            "Watching Hillary's Breakthrough 2017 video",
+                            "BLACKPINK is <3",
+                            "Ayoko na. Huhuhu.",
+                            "Di pala siya si Mr. Right? How sad. Iyak ka nalang.",
+                            "Ikaw ka na ba si Mr. Right?",
+                            "Mag-study ka na.",
+                            "\"Bawi nalang next quarter.\" (One quarter later) \"Bawi nalang next quarter.\"",
+                            "Ma'am, pa-extend deadline. Hihi.",
+                            "Sir, pa-extend deadline. Hihi.",
+                            "Ma'am, pwede plus points?",
+                            "Sir, pwede plus points?",
+                            "\"Nakuha?\" (whole class nods without even getting the topic)",
+                            "\"Geeets?\"",
+                            "\"Iha, mabigat na ba yan?\"",
+                            "\"Errrrrrrr\"",
+                            "\"Go to the board and multiple.\"",
+                            "\"To dream the impossible dreeaaaaammm...\"",
+                            "\"To fight the unbeatable fooooeeee\""
+                        );
+                        echo $loading_quotes[rand(0, count($loading_quotes) - 1)];
+                    echo '</p>
+                    </div>
+                    <div id="profile" class="view">
                         <div id="header">
                             <img id="profile-pic" class="pure-img" src="assets/img/icons/logo.jpg" width="175px" height="175px">
                             <h3>'.$name.'<span';
@@ -127,6 +157,7 @@
                         ';
             echo '                    
                     </div>
+                    <div id="manage-subjects" class="view">Test</div>
                 </div>
             </div>
             ';
