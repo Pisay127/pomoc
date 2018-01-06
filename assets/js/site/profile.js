@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $(document).on('click', 'span.data-editable', function() {
+    $(document).on('click', 'div#profile div#information div#info-list span.data-editable', function() {
         var $el = $(this);
         var el_id = $el.attr('id');
         var orig_text = $el.text();

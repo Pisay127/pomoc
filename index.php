@@ -35,6 +35,7 @@
     <script type="text/javascript" src="assets/js/site/view_handler.js"></script>
     <script type="text/javascript" src="assets/js/site/sidebar.js"></script>
     <script type="text/javascript" src="assets/js/site/profile.js"></script>
+    <script type="text/javascript" src="assets/js/site/manage-admin.js"></script>
 </head>
 <body>
     <?php
@@ -107,7 +108,10 @@
                             "\"Errrrrrrr\"",
                             "\"Go to the board and multiply.\"",
                             "\"To dream the impossible dreeaaaaammm...\"",
-                            "\"To fight the unbeatable fooooeeee\""
+                            "\"To fight the unbeatable fooooeeee\"",
+                            "Sean Ballais was here.",
+                            "Nikka de Jesus was here.",
+                            "Kenn Pulma was here."
                         );
                         echo $loading_quotes[rand(0, count($loading_quotes) - 1)];
                     echo '</p>
@@ -172,6 +176,54 @@
                             <div id="actions">
                                 <button id="add-new-admin" class="pure-button pure-button-primary">➕ Add new admin</button>
                                 <button id="view-all-admins" class="pure-button pure-button-default">👁 View all admins</button>
+                            </div>
+                            <div id="add-admin-panel">
+                                <span id="add-admin-panel-close-button" class="panel-close-button">&times;</span>
+                                <h2>Add new admin</h2>
+                                <p>All fields are required.</p>
+                                <div id="add-admin-form">
+                                    <form class="pure-form pure-form-aligned">
+                                        <fieldset>
+                                            <div class="pure-control-group">
+                                                <label for="">ID Number</label>
+                                                <input id="id_number" type="text" placeholder="ID Number" required>
+                                                <span class="pure-form-message-inline">Should be of the form 1234-5678</span>
+                                            </div>
+                                            <div class="pure-control-group">
+                                                <label for="">Username</label>
+                                                <input id="username" type="text" placeholder="Username" required>
+                                                <span class="pure-form-message-inline">Alphanumeric characters only.</span>
+                                            </div>
+                                            <div class="pure-control-group">
+                                                <label for="">Password</label>
+                                                <input id="password" type="password" placeholder="Password" required>
+                                                <span class="pure-form-message-inline"><span id="show-password" >👁</span> (Hover over eye to show password)</span>
+                                            </div>
+                                            <div class="pure-control-group">
+                                                <label for="">First Name</label>
+                                                <input id="first_name" type="text" placeholder="First Name" required>
+                                            </div>
+                                            <div class="pure-control-group">
+                                                <label for="">Middle Name</label>
+                                                <input id="middle_name" type="text" placeholder="Middle Name" required>
+                                            </div>
+                                            <div class="pure-control-group">
+                                                <label for="">Last Name</label>
+                                                <input id="last_name" type="text" placeholder="Last Name" required>
+                                            </div>
+                                            <div class="pure-control-group">
+                                                <label for="">Birthday</label>
+                                                <input id="create-admin-birth_date" type="text" placeholder="November 15, 1935" required>
+                                            </div>
+                                            <div class="pure-controls">
+                                                <button id="create-admin-button" type="submit" class="pure-button pure-button-green">Create new admin</button>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                    <div class="tip">
+                                        <p><b>Tip!</b> Clicking <span class="primary-button-replica">➕ <b>Add new admin</b></span> again also closes this panel.</p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="view-message"></div>
                             <div id="results"></div>

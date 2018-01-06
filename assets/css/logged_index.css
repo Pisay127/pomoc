@@ -189,22 +189,22 @@
 }
 
 #content-layer #main-dashboard #profile #information {
-    margin: 3% 20% 1% 20%;
-    padding: 1.5% 3% 3% 3%;
-
     background-color: #EFEFEF;
     border-radius: 25px;
+
+    margin: 3% 20% 1% 20%;
+    padding: 1.5% 3% 3% 3%;
 }
 
 #content-layer #main-dashboard #profile #information h2 {
     font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
-    font-size: 1.5em;
+    font-size: 1.3em;
 
     margin: 0;
 }
 
 #content-layer #main-dashboard #profile #information p {
-    font-family: "Source Sans Pro Extra Light", Helvetica Neue, sans-serif;
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
     font-size: 1em;
     font-weight: 400;
 
@@ -212,7 +212,9 @@
 }
 
 #content-layer #main-dashboard #profile #information div#info-list p {
-    font-size: 1.25em;
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.2em;
+
     margin: 0;
     padding: 3%;
 }
@@ -231,24 +233,36 @@
     font-size: 1em;
     font-weight: bold;
 
-    border-radius: 5px;
+    border-radius: 4px;
 
     float: right;
 }
 
 #content-layer #main-dashboard #manage-admins div#panel {
-    padding-left: 20%;
-    padding-right: 20%;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 3%
 }
 
 #content-layer #main-dashboard #manage-admins div#panel h2 {
-    font-family: "Source Sans Pro Extra Light", Helvetica Neue, sans-serif;
-    font-size: 1.5em;
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.75em;
+    font-weight: bold;
+
+    margin: 0;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel p {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.1em;
     font-weight: 400;
+
+    margin: 0;
 }
 
 #content-layer #main-dashboard #manage-admins div#panel div#search {
     text-align: center;
+    padding-top: 3%;
 }
 
 #content-layer #main-dashboard #manage-admins div#panel div#search div#search-form {
@@ -271,5 +285,37 @@
 
 #content-layer #main-dashboard #manage-admins div#panel div#actions {
     padding-top: 5%;
-    padding-bottom: 5%;
+    padding-bottom: 2%;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#add-admin-panel {
+    background-color: #EFEFEF;
+    border-radius: 4px;
+
+    display: none;
+    padding: 3%;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#add-admin-panel h2 {
+    font-size: 1.4em;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#add-admin-panel div#add-admin-form form fieldset div label {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#add-admin-panel div#add-admin-form form fieldset div span span#show-password {
+    background-color: #aaaaaa;
+    color: white;
+
+    border-radius: 20px;
+    padding: 2px;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

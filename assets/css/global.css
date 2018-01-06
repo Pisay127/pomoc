@@ -25,6 +25,15 @@ button.pure-button {
     transition: all 0.2s ease-out;
 }
 
+button.pure-button-green {
+    background: rgb(42, 163, 159);
+    color: white;
+}
+
+button.pure-button-green:hover {
+    background: rgb(27, 107, 103);
+}
+
 button.pure-button-default:hover {
     background: #cccccc none;
 }
@@ -46,4 +55,42 @@ button.pure-button-primary:hover {
     margin-left: 20%;
     margin-right: 20%;
     margin-top: 3%;
+}
+
+span.primary-button-replica {
+    background-color: #0078e7;
+    color: white;
+
+    border-radius: 4px;
+    padding: 1%;
+}
+
+span.panel-close-button {
+    font-family: "Source Sans Pro Extra Light", Helvetica Neue, sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+
+    background-color: #aaaaaa;
+    color: white;
+    float: right;
+
+    display: inline-block;
+    padding: 4px 13px;
+    text-align: center;
+
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+span.panel-close-button:hover {
+    background-color: #7b7b7b;
+}
+
+div.tip {
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
