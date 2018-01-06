@@ -136,7 +136,7 @@
                             <h2>@'.$user_info["username"].'</h2>
                             <p class="pure-u-1"><span id="age-span"><b>Age</b> '.$user_info["age"].'</span><span><b>Birthday</b> '.$birth_date.'</span></p>
                         </div>
-                        <div id="profile-save-message"></div>
+                        <div class="view-message"></div>
                         <div id="information">
                             <h2>Information</h2>
                             <p>Click values to edit.</p>
@@ -162,12 +162,18 @@
                         <div id="panel">
                             <h2>Manage Admins</h2>
                             <div id="search">
-                                Text box here and view all thingy mabop
+                                <div id="search-form" class="pure-g">
+                                    <form class="pure-form">
+                                        <input type="text" placeholder="Search for admin (by username)">
+                                        <button type="submit" class="pure-button pure-button-primary">🔍</button>
+                                    </form>
+                                </div>
                             </div>
                             <div id="actions">
-                                <button class="pure-button pure-button-primary">➕ Add new admin</button>
-                                <button class="pure-button pure-button-default">View all</button>
+                                <button id="add-new-admin" class="pure-button pure-button-primary">➕ Add new admin</button>
+                                <button id="view-all-admins" class="pure-button pure-button-default">👁 View all admins</button>
                             </div>
+                            <div class="view-message"></div>
                             <div id="results"></div>
                         </div>
                     </div>

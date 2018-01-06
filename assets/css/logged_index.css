@@ -236,21 +236,6 @@
     float: right;
 }
 
-#content-layer #main-dashboard #profile div#profile-save-message {
-    background-color: #2F2F2F;
-    color: white;
-
-    font-size: 1em;
-    text-align: center;
-
-    display: none;
-    border-radius: 5px;
-    padding: 1.5%;
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-top: 3%;
-}
-
 #content-layer #main-dashboard #manage-admins div#panel {
     padding-left: 20%;
     padding-right: 20%;
@@ -260,4 +245,31 @@
     font-family: "Source Sans Pro Extra Light", Helvetica Neue, sans-serif;
     font-size: 1.5em;
     font-weight: 400;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#search {
+    text-align: center;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#search div#search-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#search div#search-form form input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#search div#search-form form button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+
+#content-layer #main-dashboard #manage-admins div#panel div#actions {
+    padding-top: 5%;
+    padding-bottom: 5%;
 }

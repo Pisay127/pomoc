@@ -17,12 +17,19 @@ class Utils
 
     public static function getUserID()
     {
-        $cookie = $_COOKIE["pomoc_user"];
-        $cookie_value = json_decode($cookie);
-        $access_token = $cookie_value->access_token;
+        $access_token = Utils::getAccessToken();
         $decoded_token = Utils::decodeJWT($access_token);
         $decoded_payload = json_decode($decoded_token["payload"]);
 
         return $decoded_payload->sub;
+    }
+
+    public static function getAccessToken()
+    {
+        $cookie = $_COOKIE["pomoc_user"];
+        $cookie_value = json_decode($cookie);
+        $access_token = $cookie_value->access_token;
+
+        return $access_token;
     }
 }

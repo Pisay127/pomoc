@@ -32,3 +32,18 @@ button.pure-button-default:hover {
 button.pure-button-primary:hover {
     background: #005cb3 none;
 }
+
+.view-message {
+    background-color: #2F2F2F;
+    color: white;
+
+    font-size: 1em;
+    text-align: center;
+
+    display: none;
+    border-radius: 5px;
+    padding: 1.5%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 3%;
+}
