@@ -11,7 +11,7 @@ class Utils
         return array(
             'header'    => base64_decode($header),
             'payload'   => base64_decode($payload),
-            'signature' => base64_decode($signature)
+            'signature' => $signature
         );
     }
 

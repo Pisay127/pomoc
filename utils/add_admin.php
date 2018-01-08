@@ -6,7 +6,7 @@
     use GuzzleHttp\Exception\ClientException;
 
     $url = $server_url."/user";
-    $admin_data = json_decode($_POST["modified_data"], true);
+    $admin_data = json_decode($_POST["new_admin_data"], true);
     $admin_data_scope = '';
     $keys = array_keys($admin_data);
     for ($index = 0, $num_keys = count($keys); $index < $num_keys; $index++) {
@@ -39,9 +39,10 @@
         );
         echo json_encode($add_admin_response);
     } catch (ClientException $client_exp) {
+        $error_message = json_decode($client_exp->getResponse()->getBody(), true)["status"]["description"];
         $add_admin_response = array(
             'error'   => true,
-            'message' => "Something went wrong while creating the new admin. Try reloading the page or try again later."
+            'message' => "Something went wrong while creating the new admin. ".$error_message
         );
         echo json_encode($add_admin_response);
     }

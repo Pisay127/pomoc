@@ -53,11 +53,11 @@ $(document).ready(function() {
                 onClose: function() {
                     var second_diff = (Date.now() / 1000) - (new Date($input.val()).getTime() / 1000 | 0);
                     second_diff = second_diff / 31557600; // Divided by the number of seconds in a year.
-                    second_diff = Math.floor(second_diff);
+                    var age_year = Math.floor(second_diff);
 
                     var $age_el = $('span#age');
-                    $age_el.text(second_diff);
-                    sessionStorage.setItem('age', second_diff);
+                    $age_el.text(age_year);
+                    sessionStorage.setItem('age', age_year);
                     save();
                 }
             });

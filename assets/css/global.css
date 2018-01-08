@@ -19,6 +19,20 @@ html, body {
     float: right;
 }
 
+*.curved-top-border {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+*.curved-bottom-border {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+*.margin-left-two-percent {
+    margin-left: 2%;
+}
+
 button.pure-button {
     border-radius: 4px;
 
@@ -34,6 +48,24 @@ button.pure-button-green:hover {
     background: rgb(27, 107, 103);
 }
 
+button.pure-button-bluer-green {
+    background: rgb(34, 91, 156);
+    color: white;
+}
+
+button.pure-button-bluer-green:hover {
+    background: rgb(28, 64, 115);
+}
+
+button.pure-button-red {
+    background: rgb(156, 36, 42);
+    color: white;
+}
+
+button.pure-button-red:hover {
+    background: rgb(113, 27, 31);
+}
+
 button.pure-button-default:hover {
     background: #cccccc none;
 }
@@ -42,7 +74,7 @@ button.pure-button-primary:hover {
     background: #005cb3 none;
 }
 
-.view-message {
+.view-message, .dropdownabble-message {
     background-color: #2F2F2F;
     color: white;
 
@@ -55,6 +87,10 @@ button.pure-button-primary:hover {
     margin-left: 20%;
     margin-right: 20%;
     margin-top: 3%;
+}
+
+.dropdownabble-message {
+    margin-top: 0;
 }
 
 span.primary-button-replica {

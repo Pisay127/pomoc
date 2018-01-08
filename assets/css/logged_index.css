@@ -6,6 +6,40 @@
     display: none;
 }
 
+.dropdownabble-trigger {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.1em;
+
+    background-color: #2b5177;
+    color: white;
+
+    padding: 2%;
+
+    border: solid 1px #1a4762;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    user-select: none;
+}
+
+.dropdownabble-trigger:hover {
+    background-color: #3574a4;
+}
+
+.dropdownabble-trigger:active {
+    background-color: #203b57;
+}
+
+.dropdownabble-element {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.1em;
+
+    background-color: #8caeda;
+
+    padding: 2%;
+
+    display: none;
+}
+
 #content-layer {
     min-height: 100%;
 }
@@ -318,4 +352,8 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#results {
+    display: none;
 }

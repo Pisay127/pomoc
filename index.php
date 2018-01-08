@@ -31,11 +31,12 @@
     ?>
     <script type="text/javascript" src="assets/js/lib/jquery.js"></script>
     <script type="text/javascript" src="assets/js/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="assets/js/lib/js.cookie.js"></script>
     <script type="text/javascript" src="assets/js/site/login.js"></script>
-    <script type="text/javascript" src="assets/js/site/view_handler.js"></script>
     <script type="text/javascript" src="assets/js/site/sidebar.js"></script>
     <script type="text/javascript" src="assets/js/site/profile.js"></script>
     <script type="text/javascript" src="assets/js/site/manage-admin.js"></script>
+    <script type="text/javascript" src="assets/js/site/view_handler.js"></script>
 </head>
 <body>
     <?php
@@ -111,7 +112,8 @@
                             "\"To fight the unbeatable fooooeeee\"",
                             "Sean Ballais was here.",
                             "Nikka de Jesus was here.",
-                            "Kenn Pulma was here."
+                            "Kenn Pulma was here.",
+                            "Tama muna sa Facebook and DoTa 2."
                         );
                         echo $loading_quotes[rand(0, count($loading_quotes) - 1)];
                     echo '</p>
@@ -173,6 +175,7 @@
                                     </form>
                                 </div>
                             </div>
+                            <div class="view-message"></div>
                             <div id="actions">
                                 <button id="add-new-admin" class="pure-button pure-button-primary">➕ Add new admin</button>
                                 <button id="view-all-admins" class="pure-button pure-button-default">👁 View all admins</button>
@@ -187,7 +190,7 @@
                                             <div class="pure-control-group">
                                                 <label for="">ID Number</label>
                                                 <input id="id_number" type="text" placeholder="ID Number" required>
-                                                <span class="pure-form-message-inline">Should be of the form 1234-5678</span>
+                                                <span class="pure-form-message-inline">Should be of the form 12-34-569.</span>
                                             </div>
                                             <div class="pure-control-group">
                                                 <label for="">Username</label>
@@ -214,6 +217,7 @@
                                             <div class="pure-control-group">
                                                 <label for="">Birthday</label>
                                                 <input id="create-admin-birth_date" type="text" placeholder="November 15, 1935" required>
+                                                <span class="pure-form-message-inline">Click text field to select date.</span>
                                             </div>
                                             <div class="pure-controls">
                                                 <button id="create-admin-button" type="submit" class="pure-button pure-button-green">Create new admin</button>
@@ -221,11 +225,10 @@
                                         </fieldset>
                                     </form>
                                     <div class="tip">
-                                        <p><b>Tip!</b> Clicking <span class="primary-button-replica">➕ <b>Add new admin</b></span> again also closes this panel.</p>
+                                        <p><b>Tip!</b> Clicking <span class="primary-button-replica">➕ <b>Add new admin</b></span> again closes this panel.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="view-message"></div>
                             <div id="results"></div>
                         </div>
                     </div>
