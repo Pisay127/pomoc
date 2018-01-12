@@ -8,21 +8,24 @@
     $url = $server_url."/user";
     $modified_data = json_decode($_POST["modified_data"], true);
     $modified_data_scope = '';
+    $new_data = array();
     $keys = array_keys($modified_data);
     for ($index = 0, $num_keys = count($keys); $index < $num_keys; $index++) {
-        $modified_data_scope = $modified_data_scope.$keys[$index];
+        if ($modified_data[$keys[$index]] != '') {
+            $modified_data_scope = $modified_data_scope.$keys[$index];
+            $new_data[$keys[$index]] = $modified_data[$keys[$index]];
 
-        if ($index < $num_keys - 1) {
-            $modified_data_scope = $modified_data_scope.", ";
+            if ($index < $num_keys - 1) {
+                $modified_data_scope = $modified_data_scope.", ";
+            }
         }
     }
 
     $data = array(
-        'user_id'       => \Pomoc\Utils\Utils::getUserID(),
         'scope'         => $modified_data_scope
     );
 
-    $data = array_merge($data, $modified_data);
+    $data = array_merge($data, $new_data);
 
     $client = new GuzzleHttp\Client();
     try {

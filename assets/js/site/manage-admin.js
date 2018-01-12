@@ -2,6 +2,7 @@ $(document).ready(function() {
     var admin_panel_form_selector = 'div#manage-admins div#panel div#add-admin-panel div#add-admin-form form';
     var admin_panel_form = $(admin_panel_form_selector);
     var admin_inputs = {};
+    var timeout_id = 0;
     $(admin_panel_form_selector + ' input').each(function() {
         var input = $(this);
         var input_id = input.attr('id');
@@ -10,10 +11,104 @@ $(document).ready(function() {
 
     $(document).on('click', 'div.dropdownabble-trigger', function() {
         if ($(this).next().is(':visible')) {
-            $(this).next().slideUp(450);
+            $(this).children('span.arrow').text('▶');
+
+            var trigger_div = $(this);
+            $(this).next().slideUp(450, function() {
+                if (trigger_div.hasClass('bottom-dropdownabble-trigger')) {
+                    trigger_div.addClass('curved-bottom-border');
+                }
+            });
         } else {
-            $(this).next().slideDown(450);
+            $(this).children('span.arrow').text('▼');
+
+            if ($(this).hasClass('bottom-dropdownabble-trigger')) {
+                $(this).removeClass('curved-bottom-border', function() {
+                    $(this).next().slideDown(450);
+                });
+            } else {
+                $(this).next().slideDown(450);
+            }
         }
+    });
+
+    $(document).on('click', 'button.admin-save-changes-button', function(e) {
+        e.preventDefault();
+
+        var save_button = $(this);
+
+        $(this).text('Saving changes...').attr("disabled", true);
+
+        var parent_form = $(this).closest('form');
+        var message_block = parent_form.next('div.dropdownabble-message');
+        var admin_data = {};
+
+        message_block.slideUp(450);
+
+        var invalid_input = false;
+        var invalid_input_message = '';
+        $(parent_form).find(':input').not(':button').each(function() {
+            var input_name = $(this).attr('name');
+            var input_val = $(this).val();
+
+            if (input_name === 'birth_date') {
+                admin_data['age'] = getAgeInYears(input_val);
+            } else if (input_name === 'id_number' && !isIDNumberValid(input_val)) {
+                invalid_input = true;
+                invalid_input_message = 'Invalid ID number. It must be of the form 12-34-569.';
+
+                return false;
+            } else if (input_name === 'username' && !isUsernameValid(input_val)) {
+                invalid_input = true;
+                invalid_input_message = 'Invalid username. Use alphanumeric characters only.';
+
+                return false;
+            }
+
+            admin_data[input_name] = input_val;
+        });
+
+        if (invalid_input) {
+            clearTimeout(timeout_id);
+
+            message_block.slideUp(450, function() {
+                message_block.text(invalid_input_message);
+            }).slideDown(450);
+
+            save_button.text('Save changes').attr("disabled", false);
+
+            return false;
+        }
+
+        var dropdownabble_trigger = $(this).closest('div.dropdownabble-element').prev('div');
+
+        $.post('utils/edit_user.php', {'modified_data': JSON.stringify(admin_data)}, function(response) {
+            var resp_json = JSON.parse(response);
+            var message_text = resp_json.message;
+            message_block.text(message_text).slideDown(450);
+
+            save_button.text('Save changes').attr("disabled", false);
+
+            // TODO: Add a "Gathering admin information..." message at the start of this manage admin page.
+
+            if (admin_data['id_number']) {
+                $(dropdownabble_trigger).children('span.dropdownabble-element-id-number').text(admin_data['id_number']);
+            }
+
+            if (admin_data['last_name']) {
+                $(dropdownabble_trigger).children('span.dropdownabble-element-last-name').text(admin_data['last_name']);
+            }
+
+            if (admin_data['first_name']) {
+                $(dropdownabble_trigger).children('span.dropdownabble-element-first-name').text(admin_data['first_name']);
+            }
+
+            $(dropdownabble_trigger).highlight('#D4AE88');
+
+            timeout_id = setTimeout(function() {
+                message_block.slideUp(450);
+            }, 3000);
+        });
     });
 
     $('div#manage-admins div#panel div#actions button#add-new-admin').click(function() {
@@ -26,7 +121,22 @@ $(document).ready(function() {
         }
     });
 
-    $('div#manage-admins div#panel div#actions button#view-all-admins').click(display_all_admins);
+    $(document).on('click', 'input.date-selector-input', function() {
+        $(this).datepicker({
+            dateFormat: 'MM dd, yy',
+            changeYear: true,
+            changeMonth: true,
+            minDate: new Date(1935, 11, 15), // Start of Commonwealth of the Philippines, yo!
+            maxDate: 0,
+            yearRange: '1935:+0'
+        });
+        $(this).datepicker('show');
+    });
+
+    $(document).on('keydown', 'input.date-selector-input', function(e) {
+        e.preventDefault();
+        return false;
+    });
 
     $(document).on('click', 'button.admin-delete-button', function(e) {
         e.preventDefault();
@@ -48,6 +158,8 @@ $(document).ready(function() {
 
                 return false;
             }
+
+            Cookies.remove('pomoc_user');
         }
 
         $.post('utils/delete_user.php', { 'user_id': user_id }, function(response) {
@@ -85,6 +197,18 @@ $(document).ready(function() {
             admin_inputs['password'].attr('type', 'password');
         }
     );
+
+    $(document).on('mouseenter', 'span.show-password', function() {
+        var parent_form = $(this).closest('form');
+        var password_field = parent_form[0].elements['password'];
+        $(password_field).attr('type', 'text');
+    });
+
+    $(document).on('mouseleave', 'span.show-password', function() {
+        var parent_form = $(this).closest('form');
+        var password_field = parent_form[0].elements['password'];
+        $(password_field).attr('type', 'password');
+    });
 
     $(admin_inputs['create-admin-birth_date']).click(function() {
         $(this).datepicker({
@@ -230,98 +354,5 @@ $(document).ready(function() {
         var cookie_value = JSON.parse(cookie);
 
         return cookie_value.access_token;
-    }
-
-    function display_all_admins() {
-        var results_panel = $('div#manage-admins div#panel div#results');
-        var view_all_button = $('div#manage-admins div#panel div#actions button#view-all-admins');
-
-        if (results_panel.html() !== '') {
-            return false;
-        }
-
-        $(view_all_button).attr('disabled', true);
-        $(view_all_button).text('👁 Fetching data...');
-
-        results_panel.html('');
-        $.get('utils/get_all_admins.php', '', function (response) {
-            var message_block = $('div.view-message');
-            var json_response = JSON.parse(response);
-            if (json_response.error === true) {
-                message_block.text(json_response.message);
-                message_block.slideDown(450);
-                view_all_button.attr('disabled', false);
-                view_all_button.text('👁 View all admins');
-            } else {
-                var results_html = '';
-                var num_admins = Object.keys(json_response['data']['admin']).length;
-                for (var i = 0; i < num_admins; i++) {
-                    var obj = json_response['data']['admin'][i];
-                    var div_class = 'dropdownabble-trigger';
-
-                    if (i === 0) {
-                        div_class += ' curved-top-border';
-                    } else if (i === num_admins - 1) {
-                        div_class += ' curved-bottom-border';
-                    }
-
-                    results_html += '<div class="' + div_class + '"><span style="margin-right: 2%">▶</span> (' + obj.id_number + ') ' + obj.last_name + ', ' + obj.first_name + '</div>';
-                    results_html += '<div class="dropdownabble-element">';
-                    results_html += '<form class="pure-form pure-form-aligned">' +
-                        '<fieldset>';
-                    results_html += '<div class="pure-control-group">' +
-                        '<label for="">ID Number</label>' +
-                        '<input name="id_number" type="text" placeholder="ID Number" value="' + obj.id_number + '">' +
-                        '<span class="pure-form-message-inline">Should be of the form 12-34-569.</span>' +
-                        '</div>';
-                    results_html += '<div class="pure-control-group">' +
-                        '<label for="">Username</label>' +
-                        '<input name="username" type="text" placeholder="Username" value="' + obj.username + '">' +
-                        '<span class="pure-form-message-inline">Alphanumeric characters only.</span>' +
-                        '</div>';
-                    results_html += '<div class="pure-control-group">' +
-                        '<label for="">Password</label>' +
-                        '<input name="password" type="password" placeholder="Password" value="">' +
-                        '<span class="pure-form-message-inline"><span id="show-password" >👁</span> (Hover over eye to show password)</span>' +
-                        '</div>';
-                    results_html += '<div class="pure-control-group">' +
-                        '<label for="">First Name</label>' +
-                        '<input name="first_name" type="text" placeholder="First Name" value="' + obj.first_name + '">' +
-                        '</div>';
-                    results_html += '<div class="pure-control-group">' +
-                        '<label for="">Middle Name</label>' +
-                        '<input name="middle_name" type="text" placeholder="Middle Name" value="' + obj.middle_name + '">' +
-                        '</div>';
-                    results_html += '<div class="pure-control-group">' +
-                        '<label for="">Last Name</label>' +
-                        '<input name="last_name" type="text" placeholder="Last Name" value="' + obj.last_name + '">' +
-                        '</div>';
-                    results_html += '<div class="pure-control-group">' +
-                        '<label for="">Birthday</label>' +
-                        '<input name="create-admin-birth_date" type="text" placeholder="November 15, 1935" value="' + obj.birth_date + '">' +
-                        '<span class="pure-form-message-inline">Click text field to select date.</span>' +
-                        '</div>';
-                    results_html += '<div class="pure-controls">' +
-                        '<button name="save-changes-button" type="submit" class="pure-button pure-button-bluer-green admin-save-changes-button">Save changes</button>' +
-                        '<button name="delete-button" type="submit" class="pure-button pure-button-red admin-delete-button margin-left-two-percent" ';
-
-                    if (num_admins === 1) {
-                        results_html += 'disabled';
-                    }
-
-                    results_html += '>Delete admin</button>' +
-                        '</div>';
-                    results_html += '<input name="user_id" type="hidden" value="' + obj.user_id + '">';
-                    results_html += '</fieldset>' +
-                        '</form>';
-                    results_html += '<div class="dropdownabble-message"></div>';
-                    results_html += '</div>';
-                }
-
-                view_all_button.text('👁 View all admins');
-                results_panel.html(results_html);
-                results_panel.slideDown(450);
-            }
-        });
     }
 });

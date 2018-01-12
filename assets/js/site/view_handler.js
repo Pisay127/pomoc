@@ -9,50 +9,36 @@ $(document).ready(function() {
 
     $('div#loading-page').fadeOut(500, function() {
         $('div#' + localStorage.getItem('current_view')).fadeIn(500, function () {
+            var manage_users_down_val = sessionStorage.getItem('manage_users_down');
+
             if (sessionStorage.getItem('display_message') !== null) {
                 var message_block = $('div.view-message');
-                var manage_users_down_val = sessionStorage.getItem('manage_users_down');
-                var display_view_all_admins = sessionStorage.getItem('display_view_all_admins');
                 message_block.text(sessionStorage.getItem('message_text'));
                 message_block.slideDown(450);
-
-                sessionStorage.clear();
-                sessionStorage.setItem('manage_users_down', manage_users_down_val);
-                sessionStorage.setItem('display_view_all_admins', display_view_all_admins);
 
                 // TODO: Have this part of the code and other derivatives such as this delete specific
                 // TODO: items from session storage instead of clearing all of it then re-adding some
                 // TODO: cleared items.
             }
 
-            if (sessionStorage.getItem('display_view_all_admins') !== null) {
-                display_all_admins();
-
-                sessionStorage.removeItem('display_view_all_admins');
-            }
+            sessionStorage.clear();
+            sessionStorage.setItem('manage_users_down', manage_users_down_val);
         });
     });
 
+    if (localStorage.getItem('current_view') === 'manage-admins') {
+        display_all_admins();
+    }
+
     function display_all_admins() {
         var results_panel = $('div#manage-admins div#panel div#results');
-        var view_all_button = $('div#manage-admins div#panel div#actions button#view-all-admins');
 
-        if (results_panel.html() !== '') {
-            return false;
-        }
-
-        $(view_all_button).attr('disabled', true);
-        $(view_all_button).text('👁 Fetching data...');
-
-        results_panel.html('');
-        $.get('utils/get_all_admins.php', '', function (response) {
+        $.post('utils/get_all_admins.php', '', function (response) {
             var message_block = $('div.view-message');
             var json_response = JSON.parse(response);
             if (json_response.error === true) {
                 message_block.text(json_response.message);
                 message_block.slideDown(450);
-                view_all_button.attr('disabled', false);
-                view_all_button.text('👁 View all admins');
             } else {
                 var results_html = '';
                 var num_admins = Object.keys(json_response['data']['admin']).length;
@@ -62,13 +48,15 @@ $(document).ready(function() {
 
                     if (i === 0) {
                         div_class += ' curved-top-border';
-                    } else if (i === num_admins - 1) {
-                        div_class += ' curved-bottom-border';
                     }
 
-                    results_html += '<div class="' + div_class + '"><span style="margin-right: 2%">▶</span> (' + obj.id_number + ') ' + obj.last_name + ', ' + obj.first_name + '</div>';
+                    if (i === num_admins - 1) {
+                        div_class += ' curved-bottom-border bottom-dropdownabble-trigger';
+                    }
+
+                    results_html += '<div class="' + div_class + '"><span class="arrow" style="margin-right: 2%">▶</span>(<span class="dropdownabble-element-id-number">' + obj.id_number + '</span>) <span class="dropdownabble-element-last-name">' + obj.last_name + '</span>, <span class="dropdownabble-element-first-name">' + obj.first_name + '</span></div>';
                     results_html += '<div class="dropdownabble-element">';
-                    results_html += '<form class="pure-form pure-form-aligned">' +
+                    results_html += '<form method="POST" class="pure-form pure-form-aligned">' +
                         '<fieldset>';
                     results_html += '<div class="pure-control-group">' +
                         '<label for="">ID Number</label>' +
@@ -83,7 +71,11 @@ $(document).ready(function() {
                     results_html += '<div class="pure-control-group">' +
                         '<label for="">Password</label>' +
                         '<input name="password" type="password" placeholder="Password" value="">' +
-                        '<span class="pure-form-message-inline"><span id="show-password" >👁</span> (Hover over eye to show password)</span>' +
+                        '<span class="pure-form-message-inline"><span class="show-password" >👁</span> (Hover over eye to show password)</span>' +
+                        '</div>';
+                    results_html += '<div class="pure-control-group">' +
+                        '<label>&nbsp;</label>' +
+                        '<span class="pure-form-message-inline"><i>Note: Leave the password field blank if you do not want to change the password.</i></span>' +
                         '</div>';
                     results_html += '<div class="pure-control-group">' +
                         '<label for="">First Name</label>' +
@@ -99,7 +91,7 @@ $(document).ready(function() {
                         '</div>';
                     results_html += '<div class="pure-control-group">' +
                         '<label for="">Birthday</label>' +
-                        '<input name="create-admin-birth_date" type="text" placeholder="November 15, 1935" value="' + obj.birth_date + '">' +
+                        '<input name="birth_date" type="text" class="date-selector-input" placeholder="November 15, 1935" value="' + obj.birth_date + '">' +
                         '<span class="pure-form-message-inline">Click text field to select date.</span>' +
                         '</div>';
                     results_html += '<div class="pure-controls">' +
@@ -119,9 +111,9 @@ $(document).ready(function() {
                     results_html += '</div>';
                 }
 
-                view_all_button.text('👁 View all admins');
-                results_panel.html(results_html);
-                results_panel.slideDown(450);
+                results_panel.fadeOut(450, function() {
+                    $(this).html('').html(results_html).slideDown(450);
+                });
             }
         });
     }

@@ -31,6 +31,7 @@
     ?>
     <script type="text/javascript" src="assets/js/lib/jquery.js"></script>
     <script type="text/javascript" src="assets/js/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="assets/js/lib/jquery-highlight.js"></script>
     <script type="text/javascript" src="assets/js/lib/js.cookie.js"></script>
     <script type="text/javascript" src="assets/js/site/login.js"></script>
     <script type="text/javascript" src="assets/js/site/sidebar.js"></script>
@@ -110,10 +111,13 @@
                             "\"Go to the board and multiply.\"",
                             "\"To dream the impossible dreeaaaaammm...\"",
                             "\"To fight the unbeatable fooooeeee\"",
+                            "Remember your priorities! I know you wanna watch that another random Youtube video but watching Kpop is better. (totally not a Kpop fan)",
                             "Sean Ballais was here.",
                             "Nikka de Jesus was here.",
                             "Kenn Pulma was here.",
-                            "Tama muna sa Facebook and DoTa 2."
+                            "Tama muna sa Facebook and DoTa 2.",
+                            "Gtg",
+                            "Bai bai"
                         );
                         echo $loading_quotes[rand(0, count($loading_quotes) - 1)];
                     echo '</p>
@@ -155,6 +159,7 @@
                                 <p><span class="float-left">Last name</span><span id="last_name" class="float-right data-editable">'.$user_info["last_name"].'</span></p>
                                 <p><span class="float-left">Age</span><span id="age" class="float-right">'.$user_info["age"].'</span></p>
                                 <p><span class="float-left">Birthday</span><span id="birth_date" class="float-right data-editable datepicker">'.$birth_date.'</span></p>
+                                <div id="user_id" data-user-id="'.$user_info["user_id"].'"></div>
                             </div>        
                         </div>
                         <div id="information-button">
@@ -167,6 +172,9 @@
                     <div id="manage-admins" class="view">
                         <div id="panel">
                             <h2>Manage Admins</h2>
+                            <!--
+                            Hello, curious explorer! If you are wondering, yes, we were planning to add a search functionality
+                            but time constraints led us to move this feature into the future. Thank you for bearing with us!    
                             <div id="search">
                                 <div id="search-form" class="pure-g">
                                     <form class="pure-form">
@@ -175,17 +183,17 @@
                                     </form>
                                 </div>
                             </div>
+                            -->
                             <div class="view-message"></div>
                             <div id="actions">
                                 <button id="add-new-admin" class="pure-button pure-button-primary">➕ Add new admin</button>
-                                <button id="view-all-admins" class="pure-button pure-button-default">👁 View all admins</button>
                             </div>
                             <div id="add-admin-panel">
                                 <span id="add-admin-panel-close-button" class="panel-close-button">&times;</span>
                                 <h2>Add new admin</h2>
                                 <p>All fields are required.</p>
                                 <div id="add-admin-form">
-                                    <form class="pure-form pure-form-aligned">
+                                    <form method="POST" class="pure-form pure-form-aligned">
                                         <fieldset>
                                             <div class="pure-control-group">
                                                 <label for="">ID Number</label>
@@ -229,7 +237,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="results"></div>
+                            <div id="results">
+                                <div id="results-loading">
+                                    <img src="assets/img/icons/loading-small.svg">
+                                    <p>Getting admin information...</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div id="manage-students" class="view">student</div>

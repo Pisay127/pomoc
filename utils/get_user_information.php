@@ -8,7 +8,7 @@
         $url = $server_url."/user";
         $data = array(
             'user_id' => \Pomoc\Utils\Utils::getUserID(),  // We just grabbed the username. "sub" == username
-            'scope' => "id_number, first_name, middle_name, last_name, birth_date, username, age, user_type"
+            'scope' => "user_id, id_number, first_name, middle_name, last_name, birth_date, username, age, user_type"
         );
 
         $client = new GuzzleHttp\Client();

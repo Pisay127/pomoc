@@ -1,11 +1,78 @@
+@keyframes cssBGGradientSlide {
+    0%, 100% {
+        transform: none;
+    }
+    50% {
+        transform: translateY(-90vh);
+    }
+}
+
+@keyframes cssBGImageSlide {
+    0%, 100% {
+        transform: none;
+    }
+    50% {
+        transform: scale(1.5);
+    }
+}
+
+@keyframes cssBGImageSkewedSlide {
+    0%, 100% {
+        transform: skewX(20deg);
+    }
+    50% {
+        transform: translateY(-10vh) skewX(20deg);
+    }
+}
+
 #content-layer {
-    background:
-        linear-gradient(45deg, rgba(30, 87, 153, 0.85) 3%, rgba(45, 173, 124, 0.85) 72%),
-        url("../img/pisay.jpg") no-repeat;
     background-size: cover;
 
     min-height: 100%;
     overflow: hidden;
+
+    position: relative;
+}
+
+
+#content-layer::before {
+    background-image: linear-gradient(45deg, rgba(0, 136, 173, 0.85) 3%, rgba(45, 173, 124, 0.85) 72%);
+    background-size: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 200%;
+    width: 200%;
+
+    display: block;
+    content: '';
+    overflow: hidden;
+
+    animation: cssBGGradientSlide 60s infinite;
+    will-change: transform;
+
+    z-index: -1;
+}
+
+#content-layer::after {
+    background-image: url("../img/pisay.jpg");
+    background-size: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 200%;
+    width: 200%;
+
+    display: block;
+    content: '';
+    overflow: hidden;
+
+    animation: cssBGImageSlide 240s infinite;
+    will-change: transform;
+
+    z-index: -2;
 }
 
 #content-layer #title-block {
@@ -14,6 +81,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    z-index: 1;
 }
 
 #content-layer #title-block #title-content {
@@ -44,13 +113,14 @@
     overflow: hidden;
 
     position: relative;
+
+    z-index: 1;
 }
 
 #content-layer #login-block::before {
     content: "";
-    background:
-            linear-gradient(30deg, rgba(0, 60, 94, 0.85) 60%, rgba(0, 164, 145, 0.85) 3%),
-            url("../img/bg-front.jpg") no-repeat;
+    background: linear-gradient(45deg, rgba(0, 166, 173, 0.85) 3%, rgba(45, 173, 124, 0.85) 72%),
+                url("../img/bg-front.jpg") no-repeat;
 
     position: absolute;
     width: 1000%;

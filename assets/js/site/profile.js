@@ -73,15 +73,23 @@ $(document).ready(function() {
     });
 
     $('button#profile-save-button').click(function() {
+        var user_id = $('div#profile div#information div#info-list div#user_id').attr('data-user-id');
         var modified_data = {};
         for (var i = 0; i < sessionStorage.length; i++) {
             var key = sessionStorage.key(i);
+
+            if (key === 'manage_users_down') {
+                continue;
+            }
+
             modified_data[key] = sessionStorage.getItem(key);
         }
 
+        modified_data['user_id'] = user_id;
+
         $(this).text('Saving changes...').attr("disabled", "disabled");
 
-        $.post('utils/profile-save.php', {'modified_data': JSON.stringify(modified_data)}, function(response) {
+        $.post('utils/edit_user.php', {'modified_data': JSON.stringify(modified_data)}, function(response) {
             var resp_json = JSON.parse(response);
             var message_text = resp_json.message;
             var manage_users_down_val = sessionStorage.getItem('manage_users_down');

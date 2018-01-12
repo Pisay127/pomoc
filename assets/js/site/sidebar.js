@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('div#navigation ul li#users-dropdownabble').click(function() {
         if (sessionStorage.getItem('manage_users_down') === 'false'
-            || sessionStorage.getItem('manage_users_down') === null) {
+            || !$(this).next().is(':visible')) {
             $("div#users-dropdown").slideDown(400);
             $('li#users-dropdownabble span').text('▲');
             sessionStorage.setItem('manage_users_down', true);

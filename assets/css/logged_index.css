@@ -40,6 +40,20 @@
     display: none;
 }
 
+span.show-password {
+    background-color: #aaaaaa;
+    color: white;
+
+    border-radius: 20px;
+    padding: 2px;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 #content-layer {
     min-height: 100%;
 }
@@ -340,20 +354,10 @@
     font-weight: bold;
 }
 
-#content-layer #main-dashboard #manage-admins div#panel div#add-admin-panel div#add-admin-form form fieldset div span span#show-password {
-    background-color: #aaaaaa;
-    color: white;
-
-    border-radius: 20px;
-    padding: 2px;
-
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+#content-layer #main-dashboard #manage-admins div#panel div#results div#results-loading {
+    text-align: center;
 }
 
-#content-layer #main-dashboard #manage-admins div#panel div#results {
-    display: none;
+#content-layer #main-dashboard #manage-admins div#panel div#results div.dropdownabble-element form fieldset div span {
+    color: black;
 }
