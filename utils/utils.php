@@ -33,3 +33,18 @@ class Utils
         return $access_token;
     }
 }
+
+class SimpleSet
+{
+    private $container = array();
+
+    public function add($value)
+    {
+        $this->container[$value] = true;
+    }
+
+    public function contains($value)
+    {
+        return isset($this->container[$value]);
+    }
+}

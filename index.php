@@ -1,4 +1,6 @@
 <?php
+    require_once("utils/templating.php");
+
     $user_logged_in = false;
     if (isset($_COOKIE["pomoc_user"])) {
         $user_logged_in = true;
@@ -42,6 +44,10 @@
 <body>
     <?php
         if ($user_logged_in) {
+            require_once("utils/get_user_information.php");
+            $user_info = get_user_info();
+            $name = $user_info["first_name"]." ".$user_info["middle_name"]." ".$user_info["last_name"];
+            $birth_date = strftime("%B %d, %Y", strtotime($user_info["birth_date"]));
             echo '
             <div id="content-layer" class="pure-g">
                 <div id="sidebar" class="pure-u-7-24">
@@ -81,10 +87,6 @@
                 </div>
                 <div id="main-dashboard" class="pure-u-17-24">
                     ';
-                    require_once("utils/get_user_information.php");
-                    $user_info = get_user_info();
-                    $name = $user_info["first_name"]." ".$user_info["middle_name"]." ".$user_info["last_name"];
-                    $birth_date = strftime("%B %d, %Y", strtotime($user_info["birth_date"]));
                     echo '
                     <div id="loading-page">
                         <!-- To be invoked only when switching views. -->
@@ -121,131 +123,24 @@
                         );
                         echo $loading_quotes[rand(0, count($loading_quotes) - 1)];
                     echo '</p>
-                    </div>
-                    <div id="profile" class="view">
-                        <div id="header">
-                            <img id="profile-pic" class="pure-img" src="assets/img/icons/logo.jpg" width="175px" height="175px">
-                            <h3>'.$name.'<span';
-                            $span_title = "";
-                            $user_icon = "";
-                            if ($user_info["user_type"] == "admin") {
-                                $span_title = "This user is an admin.";
-                                $user_icon = "🛡";
-                            } else if ($user_info["user_type"] == "teacher") {
-                                $span_title = "This user is a teacher. May they teach the students with excellence.";
-                                $user_icon = "📖";
-                            } else if ($user_info["user_type"] == "student") {
-                                $span_title = "This user is a student. Musta grades? :) A totally not threatening friendly message from the Shawarma team.";
-                                $user_icon = "🎓";
-                            }
-
-                            echo ' title="'.$span_title.'" style="user-select: none; margin-left: 5px; margin-right: 5px;">'.$user_icon;
-
-                            echo'
-                            </span></h3>
-                            <h2>@'.$user_info["username"].'</h2>
-                            <p class="pure-u-1"><span id="age-span"><b>Age</b> '.$user_info["age"].'</span><span><b>Birthday</b> '.$birth_date.'</span></p>
-                        </div>
-                        <div class="view-message"></div>
-                        <div id="information">
-                            <h2>Information</h2>
-                            <p>Click values to edit.</p>
-                            <div id="info-list">
-                                <p><span class="float-left">ID Number</span><span id="id_number" class="float-right">'.$user_info["id_number"].'</span></p>
-                                <p><span class="float-left">Username</span><span id="username" class="float-right">'.$user_info["username"].'</span></p>
-                                <p><span class="float-left">Password</span><span id="password" class="float-right">(secret)</span></p>
-                                <p><span class="float-left">First name</span><span id="first_name" class="float-right data-editable">'.$user_info["first_name"].'</span></p>
-                                <p><span class="float-left">Middle name</span><span id="middle_name" class="float-right data-editable">'.$user_info["middle_name"].'</span></p>
-                                <p><span class="float-left">Last name</span><span id="last_name" class="float-right data-editable">'.$user_info["last_name"].'</span></p>
-                                <p><span class="float-left">Age</span><span id="age" class="float-right">'.$user_info["age"].'</span></p>
-                                <p><span class="float-left">Birthday</span><span id="birth_date" class="float-right data-editable datepicker">'.$birth_date.'</span></p>
-                                <div id="user_id" data-user-id="'.$user_info["user_id"].'"></div>
-                            </div>        
-                        </div>
-                        <div id="information-button">
-                            <button id="profile-save-button" class="pure-button pure-button-primary" disabled>Save changes</button>
-                        </div>
-                        ';
-            echo '                    
-                    </div>
-                    <div id="manage-subjects" class="view">Test</div>
-                    <div id="manage-admins" class="view">
-                        <div id="panel">
-                            <h2>Manage Admins</h2>
-                            <!--
-                            Hello, curious explorer! If you are wondering, yes, we were planning to add a search functionality
-                            but time constraints led us to move this feature into the future. Thank you for bearing with us!    
-                            <div id="search">
-                                <div id="search-form" class="pure-g">
-                                    <form class="pure-form">
-                                        <input type="text" placeholder="Search for admin (by username)">
-                                        <button type="submit" class="pure-button pure-button-primary">🔍</button>
-                                    </form>
-                                </div>
-                            </div>
-                            -->
-                            <div class="view-message"></div>
-                            <div id="actions">
-                                <button id="add-new-admin" class="pure-button pure-button-primary">➕ Add new admin</button>
-                            </div>
-                            <div id="add-admin-panel">
-                                <span id="add-admin-panel-close-button" class="panel-close-button">&times;</span>
-                                <h2>Add new admin</h2>
-                                <p>All fields are required.</p>
-                                <div id="add-admin-form">
-                                    <form method="POST" class="pure-form pure-form-aligned">
-                                        <fieldset>
-                                            <div class="pure-control-group">
-                                                <label for="">ID Number</label>
-                                                <input id="id_number" type="text" placeholder="ID Number" required>
-                                                <span class="pure-form-message-inline">Should be of the form 12-34-569.</span>
-                                            </div>
-                                            <div class="pure-control-group">
-                                                <label for="">Username</label>
-                                                <input id="username" type="text" placeholder="Username" required>
-                                                <span class="pure-form-message-inline">Alphanumeric characters only.</span>
-                                            </div>
-                                            <div class="pure-control-group">
-                                                <label for="">Password</label>
-                                                <input id="password" type="password" placeholder="Password" required>
-                                                <span class="pure-form-message-inline"><span id="show-password" >👁</span> (Hover over eye to show password)</span>
-                                            </div>
-                                            <div class="pure-control-group">
-                                                <label for="">First Name</label>
-                                                <input id="first_name" type="text" placeholder="First Name" required>
-                                            </div>
-                                            <div class="pure-control-group">
-                                                <label for="">Middle Name</label>
-                                                <input id="middle_name" type="text" placeholder="Middle Name" required>
-                                            </div>
-                                            <div class="pure-control-group">
-                                                <label for="">Last Name</label>
-                                                <input id="last_name" type="text" placeholder="Last Name" required>
-                                            </div>
-                                            <div class="pure-control-group">
-                                                <label for="">Birthday</label>
-                                                <input id="create-admin-birth_date" type="text" placeholder="November 15, 1935" required>
-                                                <span class="pure-form-message-inline">Click text field to select date.</span>
-                                            </div>
-                                            <div class="pure-controls">
-                                                <button id="create-admin-button" type="submit" class="pure-button pure-button-green">Create new admin</button>
-                                            </div>
-                                        </fieldset>
-                                    </form>
-                                    <div class="tip">
-                                        <p><b>Tip!</b> Clicking <span class="primary-button-replica">➕ <b>Add new admin</b></span> again closes this panel.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="results">
-                                <div id="results-loading">
-                                    <img src="assets/img/icons/loading-small.svg">
-                                    <p>Getting admin information...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="manage-students" class="view">student</div>
+                    </div>';
+                    echo \Pomoc\Utils\Templating::render_fragment("fragments/profile.html",
+                                                                  array(
+                                                                      "name" => $name,
+                                                                      "user_id" => $user_info["user_id"],
+                                                                      "id_number" => $user_info["id_number"],
+                                                                      "username" => $user_info["username"],
+                                                                      "first_name" => $user_info["first_name"],
+                                                                      "middle_name" => $user_info["middle_name"],
+                                                                      "last_name" => $user_info["last_name"],
+                                                                      "age" => $user_info["age"],
+                                                                      "user_type" => $user_info["user_type"],
+                                                                      "birth_date" => $birth_date
+                                                                  )
+                                                                 );
+                    echo'<div id="manage-subjects" class="view">Test</div>';
+                    echo \Pomoc\Utils\Templating::render_fragment("fragments/manage-admins.html");
+                    echo '<div id="manage-students" class="view">student</div>
                     <div id="manage-teachers" class="view">teacher</div>
                 </div>
             </div>
