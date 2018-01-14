@@ -1,8 +1,8 @@
 <div id="profile" class="view">
     <div id="header">
         <img id="profile-pic" class="pure-img" src="assets/img/icons/logo.jpg" width="175px" height="175px">
-        <h3>{{ name }}
-        {%
+        <h3>{{ name }}{% // TODO: Fix this issue where a space is rendered if the logic block starting tag is placed
+                         //       in a new line.
             span_title = ''
             user_icon = ''
 

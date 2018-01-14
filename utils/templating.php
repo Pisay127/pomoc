@@ -12,33 +12,33 @@ class Templating
         // TODO: Add syntax checking, like seriously.
 
         $fragment_content = file_get_contents($fragment_filepath);
-        $fragment_content = self::replace_vars($fragment_content, $vars);
-        self::execute_logics($fragment_content, $vars);
+        $fragment_content = self::parse_fragment($fragment_content, $vars);
 
         return $fragment_content;
     }
 
-    private static function replace_vars($fragment_content, $vars)
+    private static function parse_fragment($fragment_content, $vars)
     {
         $content = "";
-        $disregard_logic_block = false; // We have this variable outside the block because logic blocks encompasses
+        $logic_block_mode = false; // We have this variable outside the block because logic blocks encompasses
                                         // multiple lines while vars only reside in one line.
         $line_length = strlen($fragment_content);
         $grab_var = false;
         $var_name = "";
+        $logic_block = "";
         for ($i = 0; $i < $line_length; $i++) {
             $char = $fragment_content[$i];
 
-            if ($disregard_logic_block) {
+            if ($logic_block_mode) {
                 if ($char == "%" && $fragment_content[$i + 1] == "}") {
-                    $disregard_logic_block = false;
+                    $logic_block_mode = false;
                     $i++; // (comment_$i_increment)
                           // Here, we increment $i only by one cause at the end of the loop, we increment
                           // it again so we actually move the index two times forward instead of just one.
 
-                    $content = $content."%}";
+                    $content .= self::execute_block($logic_block, $vars);
                 } else {
-                    $content = $content.$char;
+                    $logic_block .= $char;
                 }
             } else if ($grab_var) {
                 if ($char == "}" && $fragment_content[$i + 1] == "}") {
@@ -55,10 +55,8 @@ class Templating
                     $grab_var = true;
                     $i++; // Read (comment_$i_increment).
                 } else if ($char == "{" && $fragment_content[$i + 1] == "%") {
-                    $disregard_logic_block = true;
+                    $logic_block_mode = true;
                     $i++; // Read (comment_$i_increment).
-
-                    $content = $content."{%";
                 } else {
                     $content = $content.$char;
                 }
@@ -68,38 +66,6 @@ class Templating
         return $content;
     }
 
-    private static function execute_logics($fragment_content, $vars)
-    {
-        $content = "";
-        $logic = "";
-        $grab_logic = false;
-        $content_length = strlen($fragment_content);
-        for ($i = 0; $i < $content_length; $i++) {
-            $char = $fragment_content[$i];
-
-            if ($grab_logic) {
-                if ($char == "%" && $fragment_content[$i + 1] == "}") {
-                    $grab_logic = false;
-                    $i++;
-
-                    // Execute code block
-                    self::execute_block($logic, $vars);
-
-                } else {
-                    $logic = $logic.$char;
-                }
-            } else {
-                if ($char == "{" && $fragment_content[$i + 1] == "%") {
-                    $grab_logic = true;
-
-                    $i++;
-                } else {
-                    $content = $content.$char;
-                }
-            }
-        }
-    }
-
     private static function execute_block($logic, &$vars)
     {
         // Dev note: I wanted to call the parameter $vars as $vars_pool cause it sounds cooler but
@@ -107,11 +73,18 @@ class Templating
         //           redundant.
 
         $tokens = self::lex_block($logic);
-        var_dump(self::parse_tokens($tokens));
+        $ast = self::parse_tokens($tokens);
+        $output = "";
+        self::interpret_ast($ast, $vars, $output);
+
+        return self::parse_fragment($output, $vars);
     }
 
     private static function lex_block($logic)
     {
+        // TODO: If you want to limit the scope of a variable to its block,
+        // TODO: use the keyword "internal" or something like that to limit variable scope.
+
         $keywords = new SimpleSet();
         $keywords->add("if");
         $keywords->add("then");
@@ -210,7 +183,8 @@ class Templating
 
         // TODO: Raise an error if the string didn't end with a quotation mark.
         if ($logic[$index] == "'") {
-            $tokens[] = new Token(TokenType::LITERAL, $token."'");
+            $token = trim($token, "'");
+            $tokens[] = new Token(TokenType::LITERAL, $token);
             $index++; // Move the index forward because we do not
                       // want to read the ending quotation mark again
                       // back in lex_block(). Failing to do this will make
@@ -301,6 +275,9 @@ class Templating
             array_push($ast_node, self::parse_conditional($tokens, $tokens_length, $index));
         }
 
+        // We didn't increment $index here because if we do so, recursive calls to this functions will increment
+        // $index, even though it shouldn't.
+
         return $ast_node;
     }
 
@@ -327,6 +304,50 @@ class Templating
         }
 
         return $ast_node;
+    }
+
+    private static function interpret_ast(&$ast, &$vars, &$output)
+    {
+        foreach ($ast as $node) {
+            $operation = $node[0];
+            if ($operation == NodeOperation::ASSIGNMENT) {
+                $assignee = $node[1];
+                $value = $node[2];
+                $vars[$assignee] = $value;
+            } else if ($operation == NodeOperation::EQUALITY) {
+                $quantity_value = $vars[$node[1]];
+                $test_value = $node[2];
+
+                return $quantity_value == $test_value;
+            } else if ($operation == NodeOperation::CONDITIONAL) {
+                // NOTE: For now, we only the conditional form of:
+                //
+                //     if (variable) == (string value) then ... endif/elif ...
+                //
+                // This will improve in the future.
+
+                $condition = array($node[1]);
+                $condition_statements = $node[2];
+                $else_condition = array($node[3]);
+                if (self::interpret_ast($condition, $vars, $output)) {
+                    self::interpret_ast($condition_statements, $vars, $output);
+                } else {
+                    // Oh, no! The condition failed!
+                    if ($else_condition != null) {
+                        self::interpret_ast($else_condition, $vars, $output);
+                    }
+                }
+            } else if ($operation == NodeOperation::OUTPUT) {
+                // For now, this only support outputting strings.
+                // If you want to output the contents of a variable, do it like this.
+                // output '... {{ variable }} ...'
+
+                $output_value = $node[1];
+                $output .= $output_value;
+            }
+        }
+
+        return null;
     }
 }
 
