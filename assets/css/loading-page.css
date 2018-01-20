@@ -1,0 +1,17 @@
+#content-layer #main-dashboard #loading-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100vh;
+}
+
+#content-layer #main-dashboard #loading-page p {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.25em;
+    font-weight: bold;
+
+    max-width: 50%;
+}

@@ -1,0 +1,103 @@
+#content-layer #sidebar {
+    background-color: #0D2633;
+    box-shadow: inset 0 0 25px 15px #0c1e2a;
+    color: white;
+
+    overflow: hidden;
+}
+
+#content-layer #sidebar #title {
+    text-align: center;
+
+    padding: 5%;
+}
+
+#content-layer #sidebar #title h1 {
+    font-family: "Bebas Neue Bold", Helvetica Neue, sans-serif;
+    font-size: 5em;
+    margin: 0;
+}
+
+#content-layer #sidebar #title h2 {
+    font-family: "Source Sans Pro Extra Light", Helvetica Neue, sans-serif;
+    font-size: 1em;
+    font-weight: 400;
+    margin: 0;
+}
+
+#content-layer #sidebar #quote {
+    font-family: "Droid Serif Regular", Helvetica Neue, serif;
+    text-align: center;
+}
+
+#content-layer #sidebar #navigation ul {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.25em;
+
+    box-shadow: 0 0 5px 5px #0c1e2a;
+
+    list-style: none;
+    padding: 0;
+}
+
+#content-layer #sidebar #navigation ul li {
+    background-color: #193a53;
+
+    transition: all 0.2s ease-out;
+    padding: 5%;
+
+    user-select: none;
+}
+
+#content-layer #sidebar #navigation ul div#users-dropdown {
+    display: none;
+}
+
+#content-layer #sidebar #navigation ul div#users-dropdown li {
+    background-color: #102a3a;
+
+    padding-left: 10%;
+
+    user-select: none;
+}
+
+#content-layer #sidebar #navigation ul div#users-dropdown li:hover {
+    background-color: #122134;
+}
+
+#content-layer #sidebar #navigation ul div#users-dropdown li:active {
+    background-color: #15253a;
+}
+
+#content-layer #sidebar #navigation ul li:hover {
+    background-color: #1b435e;
+    cursor: pointer;
+}
+
+#content-layer #sidebar #navigation ul li:active {
+    background-color: #173249;
+    cursor: pointer;
+}
+
+#content-layer #sidebar #information footer {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1em;
+
+    text-align: center;
+    padding: 5%;
+}
+
+#content-layer #sidebar #information footer a {
+    color: #37c1ff;
+
+    transition: all 0.5s ease-out;
+    text-decoration: none;
+}
+
+#content-layer #sidebar #information footer a:hover {
+    color: #70d8ff;
+}
+
+#content-layer #sidebar #information footer a:active {
+    color: #4451ff;
+}

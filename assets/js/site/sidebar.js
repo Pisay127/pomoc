@@ -21,14 +21,13 @@ $(document).ready(function() {
             $('div#' + localStorage.getItem('current_view')).fadeOut(500, function() {
                 $('div#loading-page').fadeIn(500);
             });
-            localStorage.setItem('current_view', menu_id);
+            Cookies.set('current_view', menu_id);
             window.location.reload(true);
         }
     });
 
     $('div#navigation ul li#logout-button').click(function() {
         $.post('utils/logout.php', function() {
-            localStorage.clear();
             sessionStorage.clear();
             window.location.reload(true);
         });

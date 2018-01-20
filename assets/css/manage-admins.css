@@ -1,0 +1,75 @@
+#content-layer #main-dashboard #manage-admins div#panel {
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 3%
+}
+
+#content-layer #main-dashboard #manage-admins div#panel h2 {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.75em;
+    font-weight: bold;
+
+    margin: 0;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel p {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.1em;
+    font-weight: 400;
+
+    margin: 0;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#search {
+    text-align: center;
+    padding-top: 3%;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#search div#search-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#search div#search-form form input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#search div#search-form form button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+
+#content-layer #main-dashboard #manage-admins div#panel div#actions {
+    padding-top: 5%;
+    padding-bottom: 2%;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#add-admin-panel {
+    background-color: #EFEFEF;
+    border-radius: 4px;
+
+    display: none;
+    padding: 3%;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#add-admin-panel h2 {
+    font-size: 1.4em;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#add-admin-panel div#add-admin-form form fieldset div label {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#results div#results-loading {
+    text-align: center;
+}
+
+#content-layer #main-dashboard #manage-admins div#panel div#results div.dropdownabble-element form fieldset div span {
+    color: black;
+}

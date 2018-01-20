@@ -1,0 +1,47 @@
+<div id="manage-sections" class="view">
+    <div id="panel">
+        <h2>Manage Sections</h2>
+        <div class="view-message"></div>
+        <div id="actions">
+            <button id="add-new-section" class="pure-button pure-button-primary">➕ Add new section</button>
+        </div>
+        <div id="add-section-panel">
+            <span id="add-section-panel-close-button" class="panel-close-button">&times;</span>
+            <h2>Add new section</h2>
+            <p>All fields are required.</p>
+            <div id="add-section-form">
+                <form method="POST" class="pure-form pure-form-aligned">
+                    <fieldset>
+                        <div class="pure-control-group">
+                            <label for="">Section Name</label>
+                            <input id="section_name" type="text" placeholder="Section Name" required>
+                        </div>
+                        <div class="pure-control-group">
+                            <label for="">Year Level</label>
+                            <select id="year_level" name="year-level">
+                                <option value="1">Grade 7</option>
+                                <option value="2">Grade 8</option>
+                                <option value="3">Grade 9</option>
+                                <option value="4">Grade 10</option>
+                                <option value="5">Grade 11</option>
+                                <option value="6">Grade 12</option>
+                            </select>
+                        </div>
+                        <div class="pure-controls">
+                            <button id="create-section-button" type="submit" class="pure-button pure-button-green">Create new admin</button>
+                        </div>
+                    </fieldset>
+                </form>
+                <div class="tip">
+                    <p><b>Tip!</b> Clicking <span class="primary-button-replica">➕ <b>Add new section</b></span> again closes this panel.</p>
+                </div>
+            </div>
+        </div>
+        <div id="results">
+            <div id="results-loading">
+                <img src="assets/img/icons/loading-small.svg">
+                <p>Getting section information...</p>
+            </div>
+        </div>
+    </div>
+</div>

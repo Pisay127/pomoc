@@ -93,6 +93,62 @@ button.pure-button-primary:hover {
     margin-top: 0;
 }
 
+.push-rightmost {
+    float: right;
+}
+
+.view {
+    display: none;
+}
+
+.dropdownabble-trigger {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.1em;
+
+    background-color: #2b5177;
+    color: white;
+
+    padding: 2%;
+
+    border: solid 1px #1a4762;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    user-select: none;
+}
+
+.dropdownabble-trigger:hover {
+    background-color: #3574a4;
+}
+
+.dropdownabble-trigger:active {
+    background-color: #203b57;
+}
+
+.dropdownabble-element {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.1em;
+
+    background-color: #8caeda;
+
+    padding: 2%;
+
+    display: none;
+}
+
+span.show-password {
+    background-color: #aaaaaa;
+    color: white;
+
+    border-radius: 20px;
+    padding: 2px;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 span.primary-button-replica {
     background-color: #0078e7;
     color: white;

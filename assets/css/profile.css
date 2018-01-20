@@ -1,0 +1,100 @@
+#content-layer #main-dashboard #profile #header {
+    background:
+            linear-gradient(45deg, rgba(30, 87, 153, 0.85) 3%, rgba(45, 173, 124, 0.85) 72%),
+            url("../img/pisay.jpg") no-repeat;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5% 5% 1% 5%;
+}
+
+#content-layer #main-dashboard #profile #header img#profile-pic {
+    border-radius: 100%;
+}
+
+#content-layer #main-dashboard #profile #header h3 {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.75em;
+
+    color: white;
+    margin: 1% 0 0 0;
+}
+
+#content-layer #main-dashboard #profile #header h2 {
+    font-family: "Source Sans Pro Extra Light", Helvetica Neue, sans-serif;
+    font-size: 1.5em;
+    font-weight: 400;
+
+    color: white;
+    margin: 0 0 1% 0;
+}
+
+#content-layer #main-dashboard #profile #header p {
+    font-family: "Source Sans Pro Extra Light", Helvetica Neue, sans-serif;
+    font-size: 1.2em;
+    font-weight: 400;
+    text-align: center;
+    color: white;
+}
+
+#content-layer #main-dashboard #profile #header p span {
+    display: inline;
+}
+
+#content-layer #main-dashboard #profile #header p span#age-span {
+    margin-right: 10%;
+}
+
+#content-layer #main-dashboard #profile #information {
+    background-color: #EFEFEF;
+    border-radius: 25px;
+
+    margin: 3% 20% 1% 20%;
+    padding: 1.5% 3% 3% 3%;
+}
+
+#content-layer #main-dashboard #profile #information h2 {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.3em;
+
+    margin: 0;
+}
+
+#content-layer #main-dashboard #profile #information p {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1em;
+    font-weight: 400;
+
+    margin: 0;
+}
+
+#content-layer #main-dashboard #profile #information div#info-list p {
+    font-family: "Source Sans Pro Light", Helvetica Neue, sans-serif;
+    font-size: 1.2em;
+
+    margin: 0;
+    padding: 3%;
+}
+
+#content-layer #main-dashboard #profile #information div#info-list p span.float-left {
+    font-weight: bold;
+}
+
+#content-layer #main-dashboard #profile #information-button {
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+#content-layer #main-dashboard #profile #information-button button#profile-save-button {
+    font-family: "Source Sans Pro Extra Light", Helvetica Neue, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+
+    border-radius: 4px;
+
+    float: right;
+}
