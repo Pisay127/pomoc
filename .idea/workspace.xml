@@ -2,32 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="342ca9fa-1705-4704-b123-6dac7e9ba73d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/css/content-layer.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/css/loading-page.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/css/manage-admins.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/css/manage-sections.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/css/profile.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/css/sidebar.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/js/site/manage-sections.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fragments/anon_index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fragments/loading.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fragments/manage-sections.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fragments/manage-students.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fragments/manage-subjects.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fragments/manage-teachers.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fragments/sidebar.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/utils/add_section.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/utils/get_all_sections.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/logged_index.css" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/js/site/manage-admin.js" afterPath="$PROJECT_DIR$/assets/js/site/manage-admins.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/js/site/view_handler.js" afterPath="$PROJECT_DIR$/assets/js/site/view-handler.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/global.css" afterPath="$PROJECT_DIR$/assets/css/global.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/site/login.js" afterPath="$PROJECT_DIR$/assets/js/site/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/site/sidebar.js" afterPath="$PROJECT_DIR$/assets/js/site/sidebar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/logout.php" afterPath="$PROJECT_DIR$/utils/logout.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/utils.php" afterPath="$PROJECT_DIR$/utils/utils.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -84,8 +59,8 @@
       <file leaf-file-name="manage-sections.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/site/manage-sections.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="283" column="74" lean-forward="true" selection-start-line="283" selection-start-column="74" selection-end-line="283" selection-end-column="74" />
+            <state relative-caret-position="194">
+              <caret line="284" column="45" lean-forward="true" selection-start-line="284" selection-start-column="45" selection-end-line="284" selection-end-column="45" />
               <folding>
                 <element signature="e#1137#3980#0" expanded="false" />
                 <element signature="e#4448#6199#0" expanded="false" />
@@ -473,7 +448,7 @@
       <workItem from="1516247027340" duration="765000" />
       <workItem from="1516252267149" duration="8107000" />
       <workItem from="1516346887454" duration="1226000" />
-      <workItem from="1516456068027" duration="581000" />
+      <workItem from="1516456068027" duration="1747000" />
     </task>
     <task id="LOCAL-00001" summary="Added error handling in the front-end.">
       <created>1511021267939</created>
@@ -622,18 +597,25 @@
       <option name="project" value="LOCAL" />
       <updated>1515937220637</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Started manage students part.">
+      <created>1516456660303</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1516456660303</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="346238000" />
+    <option name="totallyTimeSpent" value="347404000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="96" y="209" width="1366" height="741" extended-state="6" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24450952" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.50292826" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1046,8 +1028,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/site/manage-sections.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="283" column="74" lean-forward="true" selection-start-line="283" selection-start-column="74" selection-end-line="283" selection-end-column="74" />
+        <state relative-caret-position="194">
+          <caret line="284" column="45" lean-forward="true" selection-start-line="284" selection-start-column="45" selection-end-line="284" selection-end-column="45" />
           <folding>
             <element signature="e#1137#3980#0" expanded="false" />
             <element signature="e#4448#6199#0" expanded="false" />
