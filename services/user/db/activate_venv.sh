@@ -1,0 +1,1 @@
+source ~/.virtualenvs/pomoc/services/user/db/bin/activate
