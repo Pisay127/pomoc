@@ -10,8 +10,7 @@ class User(AbstractBaseUser):
     middle_name = models.TextField()
     last_name = models.TextField()
     birth_date = models.DateField()
-    profile_picture_url = models.TextField()  # We could use ImageField() but we're gonna
-                                              # process the image first anyway.
+    avatar = models.ImageField(upload_to='avatars')
 
     REQUIRED_FIELDS = []
 
