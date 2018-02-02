@@ -1,9 +1,15 @@
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.validators import UnicodeUsernameValidator
 
 from .managers import UserManager
 
 class User(AbstractBaseUser):
+    username = models.CharField(
+        max_length=150,
+        unique=True,
+        validators=[UnicodeUsernameValidator()]
+    )
     id_number = models.CharField(max_length=20, unique=True)
     role = models.SmallIntegerField()
     first_name = models.TextField()
@@ -12,13 +18,18 @@ class User(AbstractBaseUser):
     birth_date = models.DateField()
     avatar = models.ImageField(upload_to='avatars')
 
-    REQUIRED_FIELDS = []
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['password',
+                       'id_number',
+                       'first_name',
+                       'middle_name',
+                       'last_name',
+                       'birth_date']
 
     objects = UserManager()
 
-    class Meta:
-        verbose_name = _('user')
-        verbose_name_plural = _('users')
+    def clean(self):
+        super().clean()
 
     def get_full_name(self):
         return '{0} {1}'.format(self.first_name, self.last_name).strip()
