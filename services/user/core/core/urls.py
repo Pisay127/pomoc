@@ -13,5 +13,6 @@ if settings.DEBUG:
     ]
 
 urlpatterns += [
-    
+    path(r'^$', views.api_root),
+    path(r'^'. include('data.urls', namespace='data'))
 ]
