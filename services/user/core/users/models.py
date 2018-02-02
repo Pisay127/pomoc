@@ -28,6 +28,9 @@ class User(AbstractBaseUser):
 
     objects = UserManager()
 
+    class Meta:
+        ordering = ('id_number', 'last_name', 'middle_name', 'first_name')
+
     def clean(self):
         super().clean()
 

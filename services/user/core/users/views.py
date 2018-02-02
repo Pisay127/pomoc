@@ -14,4 +14,5 @@ class UserList(generics.ListCreateAPIView):
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
 
-    def 
+    def get_queryset(self):
+        return User.objects.all().filter(username=self.request.user)
