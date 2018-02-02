@@ -1,2 +1,3 @@
 */activate_venv.sh
 **/*/__pycache__
+services/user/core/media/*

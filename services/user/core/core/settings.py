@@ -130,4 +130,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Media files
-MEDIA_ROOT = '/media/'
+if DEBUG:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+# else:
+#   MEDIA_ROOT = somewhere to store this in production.
+MEDIA_URL = '/media/'
