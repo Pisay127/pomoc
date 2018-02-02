@@ -38,7 +38,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
                   'id_number', 'role', 'first_name',
                   'middle_name', 'last_name', 'birth_date',
                   'avatar'
-                )
+                 )
         extra_kwargs = {
             'url': {
                 'view_name': 'users:user-detail',

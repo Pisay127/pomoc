@@ -9,11 +9,11 @@ from users.serializers import UserSerializer
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
+    
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
     def get_queryset(self):
-        return User.objects.all().filter(username=self.request.user)
+        return User.objects.all()
