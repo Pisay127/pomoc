@@ -1,3 +1,5 @@
+import collections
+
 from rest_framework import serializers
 from ool import ConcurrentUpdate
 
@@ -38,6 +40,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
         instance.save()
         return instance
+
+    def to_representation(self, instance):
+        ret = super(UserSerializer, self).to_representation(instance)
+        return collections.OrderedDict(list(filter(lambda x: x[1], ret.items())))
 
     class Meta:
         model = User
