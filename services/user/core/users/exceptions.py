@@ -3,7 +3,7 @@ from rest_framework import status
 from django.utils.encoding import force_text
 
 
-class Conflict(APIException):
+class HTTPConflictException(APIException):
     status_code = status.HTTP_409_CONFLICT
     default_code = 'conflict'
 

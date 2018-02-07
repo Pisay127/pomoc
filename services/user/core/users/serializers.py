@@ -2,6 +2,7 @@ from rest_framework import serializers
 from ool import ConcurrentUpdate
 
 from users.models import User
+from users.exceptions import HTTPConflictException
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -23,7 +24,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         try:
             user.save()
         except ConcurrentUpdate as concurrent_exp:
-            
+            raise HTTPConflictException('Another request modified the resource you\'re modifying. Sadt.',
+                                        'user')
 
         return user
 
