@@ -1,5 +1,5 @@
 */activate_venv.sh
-**/*/__pycache__
+**/*/__pycache__/**
 services/user/core/media/*
 
 !services/user/core/media/defaults
