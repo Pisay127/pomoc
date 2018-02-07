@@ -1,5 +1,5 @@
 from rest_framework import serializers
-
+from ool import ConcurrentUpdate
 
 from users.models import User
 
@@ -19,7 +19,12 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             avatar=validated_data.get('avatar', None)
         )
         user.set_password(validated_data.get('password', None))
-        user.save()
+
+        try:
+            user.save()
+        except ConcurrentUpdate as concurrent_exp:
+            
+
         return user
 
     def update(self, instance, validated_data):
