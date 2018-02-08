@@ -43,7 +43,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     def to_representation(self, instance):
         ret = super(UserSerializer, self).to_representation(instance)
-        print(ret.items())
         return collections.OrderedDict(list(filter(lambda x: x[1], ret.items())))
 
     class Meta:

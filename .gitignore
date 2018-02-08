@@ -1,5 +1,6 @@
 */activate_venv.sh
 **/*/__pycache__/**
+**/*/db.sqlite3
 services/user/core/media/*
 
 !services/user/core/media/defaults
