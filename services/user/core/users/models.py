@@ -23,10 +23,9 @@ def _upload_location(instance, filename):
     contents = instance.avatar.read()
     _, ext = os.path.splitext(filename)
     hash_result = _hash_contents(contents)
-    filepath = '{}/{}/{}{}'.format(hash_result[0],
-                                     hash_result[1],
-                                     hash_result,
-                                     ext)
+    filepath = '{}/{}{}'.format(hash_result[0],
+                                hash_result,
+                                ext)
 
     return 'avatars/{}'.format(filepath)
 
