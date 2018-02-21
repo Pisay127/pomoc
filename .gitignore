@@ -2,5 +2,8 @@
 **/*/__pycache__/**
 **/*/db.sqlite3
 services/user/core/media/*
+services/avatar-cropper/set-gopath.*
+services/avatar-cropper/data/*
 
 !services/user/core/media/defaults
+!services/avatar-cropper/data/haarcascade_frontalface_default.xml
