@@ -17,10 +17,6 @@ func failOnError(err error, msg string) {
 }
 
 func main() {
-	imgproc.CropImage("services/avatar-cropper/data/roma.jpg")
-}
-
-func mainTest() {
 	conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
 	failOnError(err, "Failed to connect to RabbitMQ")
 	defer conn.Close()
@@ -60,7 +56,7 @@ func mainTest() {
 	forever := make(chan bool)
 	go func() {
 		for d := range messages {
-			fmt.Printf("\nReceived a message: %s", d.Body)
+			imgproc.CropImage(string(d.Body), string(d.Body))
 			d.Ack(true)
 		}
 	}()

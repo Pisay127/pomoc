@@ -65,7 +65,7 @@ func getResizedFaceImage(face gocv.Mat, newSize int) gocv.Mat {
 }
 
 // CropImage crops the passed image to only include the face.
-func CropImage(imagePath string) {
+func CropImage(imagePath string, target string) {
 	img := gocv.IMRead(imagePath, gocv.IMReadColor)
 	defer img.Close()
 
@@ -78,5 +78,5 @@ func CropImage(imagePath string) {
 	croppedFace := getResizedFaceImage(getCroppedFace(img, face), 800)
 
 	// No need to compress the image for now.
-	gocv.IMWrite("services/avatar-cropper/data/test.jpg", croppedFace)
+	gocv.IMWrite(target, croppedFace)
 }
