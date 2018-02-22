@@ -3,8 +3,10 @@ package main
 import (
 	"fmt"
 	"log"
-	//"image/color"
+
 	"github.com/streadway/amqp"
+
+	"avatar-cropper/imgproc"
 )
 
 func failOnError(err error, msg string) {
@@ -15,7 +17,7 @@ func failOnError(err error, msg string) {
 }
 
 func main() {
-	resizeImage("services/avatar-cropper/data/group-lente.jpg")
+	imgproc.CropImage("services/avatar-cropper/data/roma.jpg")
 }
 
 func mainTest() {
