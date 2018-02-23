@@ -1,30 +1,31 @@
 package main
 
 import (
-	"fmt"
-	"log"
-
 	"github.com/streadway/amqp"
 
 	"avatar-cropper/imgproc"
+
+	log "gopkg.in/inconshreveable/log15.v2"
 )
 
-func failOnError(err error, msg string) {
-	if err != nil {
-		log.Fatal("%s: %s", msg, err)
-		panic(fmt.Sprintf("%s: %s", msg, err))
-	}
-}
-
 func main() {
+	log := log.New("service", "avatar-cropper")
+
+	log.Info("Connecting to RabbitMQ server...", "url", "amqp://guest:guest@localhost:5672/")
 	conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
-	failOnError(err, "Failed to connect to RabbitMQ")
+	if err != nil {
+		log.Error("Unable to connect to RabbitMQ server.", "url", "amqp://guest:guest@localhost:5672/")
+	}
 	defer conn.Close()
 
+	log.Info("Opening a RabbitMQ Channel...")
 	ch, err := conn.Channel()
-	failOnError(err, "Failed to open a channel")
+	if err != nil {
+		log.Error("Failed to open a RabbitMQ channel.")
+	}
 	defer ch.Close()
 
+	log.Info("Declaring a RabbitMQ queue...", "queue_name", "avatar_cropper_queue")
 	q, err := ch.QueueDeclare(
 		"avatar_cropper_queue", // name
 		true,  // durable
@@ -33,15 +34,21 @@ func main() {
 		false, // no-wait
 		nil,   // arguments
 	)
-	failOnError(err, "Failed to declare a queue")
+	if err != nil {
+		log.Error("Failed to declare a RabbitMQ queue.", "queue_name", "avatar_cropper_queue")
+	}
 
+	log.Info("Setting RabbitMQ Qos for this worker...")
 	err = ch.Qos(
 		1,     // prefetch count
 		0,     // prefetch size
 		false, // global
 	)
-	failOnError(err, "Failed to set Qos")
+	if err != nil {
+		log.Error("Failed to set RabbitMQ Qos.")
+	}
 
+	log.Info("Getting RabbitMQ messages...")
 	messages, err := ch.Consume(
 		q.Name, // queue
 		"",     // consumer
@@ -51,16 +58,14 @@ func main() {
 		false,  // no-wait
 		nil,    // args
 	)
-	failOnError(err, "Failed to register a consumer")
+	if err != nil {
+		log.Error("Failed to register consumer. Sad.")
+	}
 
-	forever := make(chan bool)
-	go func() {
-		for d := range messages {
-			imgproc.CropImage(string(d.Body), string(d.Body))
-			d.Ack(true)
-		}
-	}()
-
-	fmt.Printf(" [*] Waiting for messages. To exit, press CTRL+C.")
-	<-forever
+	log.Info("Consuming images to crop...")
+	for d := range messages {
+		log.Info("Cropping newly uploaded image...", "image", string(d.Body))
+		imgproc.CropImage(string(d.Body), string(d.Body))
+		d.Ack(true)
+	}
 }

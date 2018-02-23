@@ -1,7 +1,6 @@
 package imgproc
 
 import (
-	"fmt"
 	"image"
 
 	"gocv.io/x/gocv"
@@ -9,11 +8,15 @@ import (
 	"avatar-cropper/utils"
 )
 
-func loadClassifier() gocv.CascadeClassifier {
+var classifier gocv.CascadeClassifier
+var log log
+
+func init() {
+	log := log.New("service", "avatar-cropper-imgproc")
+
 	classifier := gocv.NewCascadeClassifier()
 	classifier.Load("services/avatar-cropper/data/haarcascade_frontalface_default.xml")
-
-	return classifier
+	defer classifier.Close()
 }
 
 func getFaceRectangle(classifier gocv.CascadeClassifier, img gocv.Mat) image.Rectangle {
@@ -33,11 +36,6 @@ func expandFaceRectangle(faceRect *image.Rectangle, multiplier int) {
 	rectWidth := faceRect.Max.X - faceRect.Min.X
 	normalizedMultiplier := int(1.0 / (float64(multiplier) / 100.0))
 	factor := int(rectWidth / normalizedMultiplier)
-
-	fmt.Printf("faceRect dimensions: Min(%d, %d), Max(%d, %d)\n", faceRect.Min.X, faceRect.Min.Y,
-		faceRect.Max.X, faceRect.Min.Y)
-	fmt.Printf("Factor: %d\n", factor)
-	fmt.Printf("Normalized multiplier: %d\n", normalizedMultiplier)
 
 	faceRect.Min.X -= factor
 	faceRect.Min.Y -= factor
@@ -69,9 +67,7 @@ func CropImage(imagePath string, target string) {
 	img := gocv.IMRead(imagePath, gocv.IMReadColor)
 	defer img.Close()
 
-	classifier := loadClassifier()
-	defer classifier.Close()
-
+	log.Info("Detecting face from picture.")
 	face := getFaceRectangle(classifier, img)
 	expandFaceRectangle(&face, 25)
 
