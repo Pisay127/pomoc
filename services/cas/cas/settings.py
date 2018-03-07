@@ -31,8 +31,11 @@ LOGGING_CONFIG = None  # Disable Django's logging setup
 
 if DEBUG:
     LOGLEVEL = 'DEBUG'
+    GRAYLOG2_HOST = 'localhost'
 else:
     LOGLEVEL = 'INFO'
+    GRAYLOG2_HOST = os.environ['GRAYLOG2_HOST']
+    
 
 logging.config.dictConfig({
     'version': 1,
@@ -48,20 +51,22 @@ logging.config.dictConfig({
             'class': 'logging.StreamHandler',
             'formatter': 'console',
         },
-        'sentry': {
-            'level': 'WARNING',
-            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+        'gelf': {
+            'level': 'INFO',
+            'class': 'graypy.GELFHandler',
+            'host': GRAYLOG2_HOST,
+            'port': os.getenv('GRAYLOG2_PORT', 12201),
         },
         'django.server': DEFAULT_LOGGING['handlers']['django.server'],
     },
     'loggers': {
         '': {
             'level': 'WARNING',
-            'handlers': ['console', 'sentry'],
+            'handlers': ['console', 'gelf'],
         },
         'cas': {
             'level': LOGLEVEL,
-            'handlers': ['console', 'sentry'],
+            'handlers': ['console', 'gelf'],
             'propagate': False,  # Required to avoid double logging with root logger.
         },
         # If you have a module that you don't want to send its logs to Sentry, do something like:
